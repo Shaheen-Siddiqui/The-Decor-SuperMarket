@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 65%;
+}
+
+:root {
+    --backgrounds: #e9d5ff;
+    --primary-color: #d8b4fe;
+    --secondary-color: #c084fc;
+    --tertiary-color: #a855f7;
+    --logo-color: #7e22ce;
+    --border-radius: 5px;
+    --box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+.remove-ud {
+    text-decoration: none;
+}

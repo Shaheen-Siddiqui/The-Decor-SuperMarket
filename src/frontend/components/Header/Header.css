@@ -1,0 +1,121 @@
+.header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--backgrounds);
+    border-bottom: 1rem solid var(--tertiary-color);
+    box-shadow: 4px 8px 15px #d8b4fe;
+
+}
+.hdr-logo,
+.logo-name{
+    font-size: 2.5rem;
+    font-family: cursi;
+}
+.hdr-logo {
+    display: flex;
+    justify-content: space-around;
+    color: var(--logo-color)
+}
+
+.hdr-right-side {
+    display: flex;
+    cursor: pointer;
+    /* border: solid; */
+}
+
+.search-baar {
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    width: 30em;
+    display: flex;
+    justify-content: space-between;
+    color: var(--logo-color);
+}
+
+.search-baar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+}
+
+.hdr-right-side {
+    width: 30rem;
+    justify-content: space-between;
+    color: var(--logo-color)
+}
+
+.hrd-login-btn{
+    text-transform: uppercase;
+    color: var(--logo-color);
+    background-color: transparent;
+    padding: 0px 10px;
+    font-weight: bold;
+    border-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.bars {
+    display: none;
+}
+
+/* midia Queries */
+@media (width < 768px) {
+    .hdr-right-side {
+        display: none;
+    }
+
+    .hdr-logo {
+        display: none;
+    }
+
+    .bars {
+        display: block;
+    }
+
+    .newappearance {
+        background-color: var(--backgrounds);
+        padding-top: 10rem;
+        font-size: 3rem;
+        height: 100vh;
+        cursor: pointer;
+    }
+
+    .rwd-logo,
+    .rwd-hdr-right-side {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2rem;
+        color: var(--tertiary-color)
+    }
+
+    .rwd-hdr-right-side {
+        height: 80rem;
+
+    }
+
+    .rwd-logo {
+        color: var(--logo-color)
+    }
+
+    .rwd-login-btn {
+        text-transform: uppercase;
+        color: var(--tertiary-color);
+        background-color: transparent;
+        font-weight: 800;
+        border: 7px solid var(--primary-color);
+        border-radius: var(--border-radius);
+        padding: 2rem 4rem;
+        font-size: 2.3rem;
+    }
+}
