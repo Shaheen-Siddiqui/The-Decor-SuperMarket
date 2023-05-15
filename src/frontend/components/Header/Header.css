@@ -55,12 +55,14 @@
 .hrd-login-btn{
     text-transform: uppercase;
     color: var(--logo-color);
-    background-color: transparent;
-    padding: 0px 10px;
+    background: rgb(243, 232, 255);
+    background: linear-gradient( 90deg, rgba(243, 232, 255, 1) 0%, rgba(216, 180, 254, 1) 37%, rgba(192, 132, 252, 1) 71% );
+    padding: 0.7rem 10px;
     font-weight: bold;
-    border-color: var(--primary-color);
+    margin-top: -0.5rem;
     border-radius: var(--border-radius);
     cursor: pointer;
+    border: none;
 }
 
 .bars {

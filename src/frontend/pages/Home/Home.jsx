@@ -1,3 +1,5 @@
+import {NavLink} from 'react-router-dom'
+//internal imports
 import "./Home.css";
 import { Footer } from "../../components/Footer/Footer";
 import {
@@ -41,7 +43,10 @@ export const Home = () => {
       <div className="hero-img-case">
         <img src={purple} alt="hero-image" className="hero-image" />
       <center>
+<NavLink to="/product-listing">
+
       <button class="button"><span>Shop Now!! </span></button>
+</NavLink>
 
         </center>
       </div>
