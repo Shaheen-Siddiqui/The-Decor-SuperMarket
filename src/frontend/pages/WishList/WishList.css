@@ -1,0 +1,17 @@
+.wishlist-product-case{
+    padding:5rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.wishlist-product{
+    margin: 3rem;
+}
+.remove-wishlist{
+    margin-left: 27rem;
+}
+
+.addtocart-btn .max-width-btn{
+    width: 26rem;
+}

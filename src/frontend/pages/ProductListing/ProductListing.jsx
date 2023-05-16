@@ -4,7 +4,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 //internal imports
 import "./ProductListing.css";
-// import '../Authentication/authentication.css'
+
 import { SideBar } from "../../components/SideBar/SideBar";
 import { image1 } from "../../assets";
 export const ProductListing = () => {
