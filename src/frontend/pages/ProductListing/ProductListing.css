@@ -1,0 +1,55 @@
+.all-products-page {
+    margin-left: 26rem;
+    padding: 3rem 9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+.product {
+    width: 30rem;
+    box-shadow: 0 0 5px 3px rgba(158, 150, 150, 0.7);
+    border-radius: var(--border-radius);
+    margin-left: 1rem;
+}
+
+.product-cantent {
+    padding: 0.5rem 2rem;
+}
+
+.product-img {
+    width: 28rem;
+    height: 23rem;
+    padding: 0.5rem;
+    margin-left: 0.8rem;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.product-name {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.rating-stuff {
+    display: flex;
+    justify-content: space-between;
+    width: 25rem;
+}
+
+.addtocart-btn button {
+    margin: 1rem 0rem;
+    padding: 1rem 6rem;
+}
+
+.wislist-icon {
+    color: red;
+    font-size: 2.8rem;
+    cursor: pointer;
+    padding: 0.5rem
+}
+
+.cart-wishlist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

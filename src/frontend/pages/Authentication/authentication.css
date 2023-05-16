@@ -35,6 +35,7 @@
 .login-btns{
     background-color: var(--logo-color);
     padding: 0.7rem;
+    cursor: pointer;
 }
 
 .form-lable,

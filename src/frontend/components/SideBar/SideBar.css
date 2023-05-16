@@ -13,6 +13,9 @@
     margin-bottom: 1rem;
 
 }
+.filter-price{
+    font-size: 1.8rem;
+}
 .filters button{
     padding: 0.1rem 1rem;
     font-family: serif;

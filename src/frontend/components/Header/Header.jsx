@@ -36,11 +36,18 @@ export const Header = () => {
             <h2>Explore</h2>
           </NavLink>
           <NavLink to="./wish-list">
-            <FontAwesomeIcon icon={faHeart} size="2xl" />
+            <div>
+              <p className="c-w-count">0</p>
+              <br />
+              <FontAwesomeIcon icon={faHeart} size="2xl" />
+            </div>
           </NavLink>
 
           <NavLink to="./cart">
-            <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
+            <div>
+              <p className="c-w-count">9</p><br />
+              <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
+            </div>
           </NavLink>
           <FontAwesomeIcon icon={faAddressCard} size="2xl" />
           <NavLink to="/login">

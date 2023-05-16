@@ -45,7 +45,7 @@ export const Home = () => {
       <center>
 <NavLink to="/product-listing">
 
-      <button class="button"><span>Shop Now!! </span></button>
+      <button className="button"><span>Shop Now!! </span></button>
 </NavLink>
 
         </center>

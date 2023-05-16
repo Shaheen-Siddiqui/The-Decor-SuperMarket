@@ -10,7 +10,7 @@ export const SideBar = () => {
           <button>Reset</button>
         </div>
         <div className="price-case">
-          <h1>Price</h1>
+          <h1 className="filter-price">Price</h1>
           <p>(₹ 0 - ₹ 1500 )</p>
           <input type="range" id="price-case" />
         </div>

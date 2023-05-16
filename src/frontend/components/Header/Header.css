@@ -6,10 +6,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 2.5rem;
     background-color: var(--backgrounds);
     border-bottom: 1rem solid var(--tertiary-color);
     box-shadow: 4px 8px 15px #d8b4fe;
+
 
 }
 .hdr-logo,
@@ -26,7 +27,6 @@
 .hdr-right-side {
     display: flex;
     cursor: pointer;
-    /* border: solid; */
 }
 
 .search-baar {
@@ -50,6 +50,18 @@
     width: 30rem;
     justify-content: space-between;
     color: var(--logo-color)
+}
+.c-w-count{
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: black;
+    position: relative;
+    margin-top: -3rem;
+    top:1rem;
+    left: 0.6rem;
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    text-align: center;
 }
 
 .hrd-login-btn{
