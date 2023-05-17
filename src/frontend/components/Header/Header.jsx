@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
 
 import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,10 +11,12 @@ import {
   faHeart,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { ProductContext } from "../../hooks/context/ProductContext";
 
 export const Header = () => {
   const [bars, setBars] = useState(false);
+  const { setProductDispatch } = useContext(ProductContext);
+
   return (
     <div>
       <div className="header-container">
@@ -26,7 +29,14 @@ export const Header = () => {
 
         <div className="search-baar">
           <NavLink to="./product-listing">
-            <input type="search" placeholder="Search..." size="30" />
+            <input
+              type="search"
+              placeholder="Search..."
+              size="30"
+              onChange={(event) =>
+                setProductDispatch({ type: "SEARCH_PRODUCTS", payload: event.target.value})
+              }
+            />
           </NavLink>
           <FontAwesomeIcon icon={faMagnifyingGlass} size="xl" />
         </div>
@@ -45,7 +55,8 @@ export const Header = () => {
 
           <NavLink to="./cart">
             <div>
-              <p className="c-w-count">9</p><br />
+              <p className="c-w-count">9</p>
+              <br />
               <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
             </div>
           </NavLink>

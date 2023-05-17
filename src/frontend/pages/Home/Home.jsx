@@ -5,7 +5,6 @@ import { Footer } from "../../components/Footer/Footer";
 import {
   purple,
   image1,
-  image2,
   image3,
   image5,
   image6,
@@ -19,10 +18,7 @@ const imageObject = [
     image: image1,
     desc: "Dressing Table",
   },
-  {
-    image: image2,
-    desc: "Almirah",
-  },
+  
   {
     image: image6,
     desc: "Luxury set",

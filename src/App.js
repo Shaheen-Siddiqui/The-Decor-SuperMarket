@@ -10,6 +10,9 @@ import { WishList } from "./frontend/pages/WishList/WishList";
 import { LogIn } from "./frontend/pages/Authentication/Login";
 import { SignUp } from "./frontend/pages/Authentication/Signup";
 
+//
+import Mockman from "mockman-js";
+
 function App() {
   return (
     <div className="App">
@@ -22,6 +25,7 @@ function App() {
           <Route path="/wish-list" element={<WishList />} />
           <Route path="/product-listing" element={<ProductListing />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/mock" element={<Mockman />} />
         </Routes>
       </div>
     </div>

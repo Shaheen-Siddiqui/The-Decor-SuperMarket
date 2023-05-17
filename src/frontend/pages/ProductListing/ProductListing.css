@@ -28,12 +28,18 @@
 .product-name {
     text-transform: uppercase;
     text-align: center;
+    padding-bottom: 1rem;
 }
 
 .rating-stuff {
     display: flex;
     justify-content: space-between;
     width: 25rem;
+}
+.card-pre-price{
+    text-decoration:line-through;
+    color: gray;
+    /* font-weight:lighter; */
 }
 
 .addtocart-btn button {

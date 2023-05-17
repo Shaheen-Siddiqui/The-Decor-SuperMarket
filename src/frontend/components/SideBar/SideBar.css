@@ -1,6 +1,6 @@
 .sidebar-container{
     width: fit-content;
-    padding: 1rem 1.5rem 1rem 5rem;
+    padding: 1rem 4rem 1rem 5rem;
     position: fixed;
     height: 60rem;
     overflow-x: hidden;
@@ -25,6 +25,7 @@
 .price-case{
     box-shadow: var(--box-shadow);
     padding: 1.5rem;
+    width: 18rem;
 }
 .price-case p{
     margin-left: 6rem;

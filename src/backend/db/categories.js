@@ -4,24 +4,34 @@ import { v4 as uuid } from "uuid";
  * Category Database can be added here.
  * You can add category of your wish with different attributes
  * */
-
+import { image1, image3, image5, image6 } from "../../frontend/assets";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
+    categoryName: "Dressing Table",
+    categoryImage: image1,
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "dressing tables are designed to be both functional and aesthetically pleasing, with a range of styles to suit different tastes.",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
+    categoryName: "Sofa",
+    categoryImage: image5,
     description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+      "variety of sofas with contemporary designs and superior quality materials that are designed to be both stylish and comfortable",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
+    categoryName: "Bed",
+    categoryImage: image3,
     description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+      " wide range of beds in different sizes and designs to suit every need and taste, providing comfort, durability, and style",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Luxury set",
+    categoryImage: image6,
+    description:
+      "Luxury furniture sets are premium quality furniture pieces that are designed with high-quality materials and intricate detailing to provide a sophisticated and elegant look to any living space.",
   },
 ];
