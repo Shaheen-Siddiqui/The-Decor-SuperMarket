@@ -1,78 +1,69 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
-
 export const productReducer = (productState, { type, payload }) => {
   switch (type) {
-    case "SEARCH_PRODUCTS":
+    case "ADD_ITEM_TO_CART":
       return {
         ...productState,
-        search: payload,
+        cart:
+          productState.cart.find((item) => item._id === payload._id) !==
+          undefined
+            ? productState.cart
+            : [...productState.cart, payload],
       };
-    case "FILTER_BEDS":
+    case "ADD_ITEM_TO_WISHLIST":
       return {
         ...productState,
-        beds: !payload,
-        filteredArray: productState.filteredArray.includes("Bed")
-          ? productState.filteredArray.filter((value) => value !== "Bed")
-          : [...productState.filteredArray, "Bed"],
+        wishList:
+          productState.wishList.find((item) => item._id === payload._id) !==
+          undefined
+            ? productState.wishList.filter((item) => item._id !== payload._id)
+            : [...productState.wishList, payload],
       };
-
-    case "FILTER_DRESSING_TABLES":
+    case "MOVE_ITEM_TO_CART":
       return {
         ...productState,
-        dressingTables: !payload,
-        filteredArray: productState.filteredArray.includes("Dressing Table")
-          ? productState.filteredArray.filter(
-              (item) => item !== "Dressing Table"
-            )
-          : [...productState.filteredArray, "Dressing Table"],
+        wishList: productState.wishList.filter(
+          ({ _id }) => _id !== payload._id
+        ),
+        cart: [...productState.cart, payload],
       };
-    case "FILTER_SOFAS":
+    case "REMOVE_FROM_WISHLIST":
       return {
         ...productState,
-        sofa: !payload,
-        filteredArray: productState.filteredArray.includes("Sofa")
-          ? productState.filteredArray.filter((item) => item !== "Sofa")
-          : [...productState.filteredArray, "Sofa"],
+        wishList: productState.wishList.filter(
+          ({ _id }) => _id !== payload._id
+        ),
       };
-
-    case "FILTER_LUXURY_SET":
+    case "MOVE_ITEM_TO_WISHLIST":
       return {
         ...productState,
-        luxurySets: !payload,
-        filteredArray: productState.filteredArray.includes("Luxury set")
-          ? productState.filteredArray.filter((item) => item !== "Luxury set")
-          : [...productState.filteredArray, "Luxury set"],
+        cart: productState.cart.filter(({ _id }) => _id !== payload._id),
+        wishList: [...productState.wishList, payload],
       };
-    case "SORT_BY_PRICE":
+    case "REMOVE_FROM_CART":
       return {
         ...productState,
-        sort: payload,
+        cart: productState.cart.filter(({ _id }) => _id !== payload._id),
       };
-    case "RATINGS":
+    case "PRODUCT_QUANTITY_INCREMENT":
       return {
         ...productState,
-        rating: payload,
+        cart: productState.cart.map((item) =>
+          item._id == payload._id
+            ? { ...item, quantity: item.quantity++ }
+            : item
+        ),
       };
-    case "PRICE_RANGE":
-      return{
+    case "PRODUCT_QUANTITY_DECREMENT":
+      return {
         ...productState,
-        priceRange:payload
-
-      }
-    case "RESET_ALL_FILTER":
-    return{
-      filteredArray:[],
-      sort:null,
-      search:'',
-      rating:'',
-      sofa:false,
-      beds:false,
-      luxurySets:false,
-      dressingTables:false,
-      priceRange:1200,
-    }
+        cart: productState.cart.map((item) =>
+          item._id === payload._id
+            ? { ...item, quantity: item.quantity-- }
+            :  item
+        ).filter(({quantity})=> quantity!==0)
+      };                       
 
     default:
-      throw new Error(`invelid type ${type} check-> productReducer`);
+      throw new Error(`invelid type ${type} check productReducer`);
   }
 };

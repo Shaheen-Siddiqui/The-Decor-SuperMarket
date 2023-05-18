@@ -1,24 +1,28 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { productReducer } from "../reducer/ProductReducer";
+import { filterReducer } from "../reducer/filterReducer";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
+import { ProductListing } from "../../pages/ProductListing/ProductListing";
+// import { Route } from "react-router-dom";
 
-export const ProductContext = createContext();
+//---------//
 
-export const ProductContextProvider = ({ children }) => {
+export const filterContext = createContext();
+
+export const FilterContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
-  const [productState, setProductDispatch] = useReducer(productReducer, {
-    cart: [],
-    wishList: [],
+  const [filterState, setfilterDispatch] = useReducer(filterReducer, {
     filteredArray: [],
     sort: null,
     search: "",
     rating: "",
     sofa: false,
     beds: false,
+    loading: false,
+    priceRange: 1200,
     luxurySets: false,
     dressingTables: false,
-    priceRange: 1200,
   });
   const {
     sort,
@@ -30,15 +34,15 @@ export const ProductContextProvider = ({ children }) => {
     luxurySets,
     dressingTables,
     priceRange,
-  } = productState;
+  } = filterState;
+  const [productLoding, setProductLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchProducts() {
-      const Response = await axios.get("/api/products");
-      setProducts(Response.data.products);
-    }
-    fetchProducts();
-  }, []);
+  async function fetchProducts() {
+    setProductLoading(true);
+    const Response = await axios.get("/api/products");
+    setProductLoading(false);
+    setProducts(Response.data.products);
+  }
 
   let filterBySearch =
     search.length > 0
@@ -69,9 +73,9 @@ export const ProductContextProvider = ({ children }) => {
     : filterProductByRating;
 
   return (
-    <ProductContext.Provider
+    <filterContext.Provider
       value={{
-        setProductDispatch,
+        setfilterDispatch,
         filterProductByPriceRange,
         priceRange,
         search,
@@ -81,9 +85,12 @@ export const ProductContextProvider = ({ children }) => {
         sofa,
         luxurySets,
         dressingTables,
+        filterBySearch,
+        fetchProducts,
+        productLoding
       }}
     >
       {children}
-    </ProductContext.Provider>
+    </filterContext.Provider>
   );
 };

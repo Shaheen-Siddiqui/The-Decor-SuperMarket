@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 //internal imports
 import "./Home.css";
 import { Footer } from "../../components/Footer/Footer";
@@ -18,7 +18,6 @@ const imageObject = [
     image: image1,
     desc: "Dressing Table",
   },
-  
   {
     image: image6,
     desc: "Luxury set",
@@ -35,15 +34,14 @@ const imageObject = [
 export const Home = () => {
   return (
     <>
-       
       <div className="hero-img-case">
         <img src={purple} alt="hero-image" className="hero-image" />
-      <center>
-<NavLink to="/product-listing">
-
-      <button className="button"><span>Shop Now!! </span></button>
-</NavLink>
-
+        <center>
+          <NavLink to="/product-listing">
+            <button className="button">
+              <span>Shop Now!! </span>
+            </button>
+          </NavLink>
         </center>
       </div>
       <h1 className="category-desc">Top Categories of the year</h1>
@@ -51,11 +49,12 @@ export const Home = () => {
       <div className="home-categories">
         {imageObject.map(({ image, desc }) => {
           return (
-            <figure>
-              <img className="uniq-img" src={image} />
-
-              <h2>{desc}</h2>
-            </figure>
+            <NavLink to="/product-listing">
+              <figure>
+                <img className="uniq-img" src={image} alt={desc} />
+                <h2>{desc}</h2>
+              </figure>
+            </NavLink>
           );
         })}
       </div>

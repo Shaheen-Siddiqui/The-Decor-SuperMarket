@@ -1,10 +1,10 @@
 import "./SideBar.css";
-import { ProductContext } from "../../hooks/context/ProductContext";
+import { filterContext } from "../../hooks/context/filterContext";
 import { useContext } from "react";
 
 export const SideBar = () => {
   const {
-    setProductDispatch,
+    setfilterDispatch,
     sort,
     rating,
     priceRange,
@@ -12,7 +12,7 @@ export const SideBar = () => {
     sofa,
     luxurySets,
     dressingTables,
-  } = useContext(ProductContext);
+  } = useContext(filterContext);
 
   return (
     <>
@@ -21,7 +21,7 @@ export const SideBar = () => {
           <h1>Filters</h1>
 
           <button
-            onClick={() => setProductDispatch({ type: "RESET_ALL_FILTER" })}
+            onClick={() => setfilterDispatch({ type: "RESET_ALL_FILTER" })}
           >
             Reset
           </button>
@@ -37,7 +37,7 @@ export const SideBar = () => {
             max="1200"
             step="100"
             onChange={(event) =>
-              setProductDispatch({
+              setfilterDispatch({
                 type: "PRICE_RANGE",
                 payload: event.target.value,
               })
@@ -54,7 +54,7 @@ export const SideBar = () => {
               name="category"
               id="bed"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "FILTER_BEDS",
                   payload: !event.target.checked,
                 })
@@ -69,7 +69,7 @@ export const SideBar = () => {
               type="checkbox"
               id="Dressing Table's"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "FILTER_DRESSING_TABLES",
                   payload: !event.target.checked,
                 })
@@ -84,7 +84,7 @@ export const SideBar = () => {
               type="checkbox"
               id="sofa"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "FILTER_SOFAS",
                   payload: !event.target.checked,
                 })
@@ -99,7 +99,7 @@ export const SideBar = () => {
               type="checkbox"
               id="luxury set"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "FILTER_LUXURY_SET",
                   payload: !event.target.checked,
                 })
@@ -115,10 +115,10 @@ export const SideBar = () => {
             <input
               type="radio"
               id="4&above"
-              checked={rating == "4"}
+              checked={rating === "4"}
               value="4"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "RATINGS",
                   payload: event.target.value,
                 })
@@ -131,10 +131,10 @@ export const SideBar = () => {
             <input
               type="radio"
               id="3&above"
-              checked={rating == "3"}
+              checked={rating === "3"}
               value="3"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "RATINGS",
                   payload: event.target.value,
                 })
@@ -147,10 +147,10 @@ export const SideBar = () => {
             <input
               type="radio"
               id="2&above"
-              checked={rating == "2"}
+              checked={rating === "2"}
               value="2"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "RATINGS",
                   payload: event.target.value,
                 })
@@ -163,10 +163,10 @@ export const SideBar = () => {
             <input
               type="radio"
               id="1&above"
-              checked={rating == "1"}
+              checked={rating === "1"}
               value="1"
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "RATINGS",
                   payload: event.target.value,
                 })
@@ -187,7 +187,7 @@ export const SideBar = () => {
               value="high_to_low"
               checked={sort === "high_to_low"}
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "SORT_BY_PRICE",
                   payload: event.target.value,
                 })
@@ -203,7 +203,7 @@ export const SideBar = () => {
               value="low_to_high"
               checked={sort === "low_to_high"}
               onChange={(event) =>
-                setProductDispatch({
+                setfilterDispatch({
                   type: "SORT_BY_PRICE",
                   payload: event.target.value,
                 })

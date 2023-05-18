@@ -10,6 +10,7 @@
 }
 .remove-wishlist{
     margin-left: 27rem;
+    cursor: pointer;
 }
 
 .addtocart-btn .max-width-btn{

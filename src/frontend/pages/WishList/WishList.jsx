@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import {
   faStar,
   faCartShopping,
@@ -6,58 +5,101 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
 //internal imports
-import { emaptyWishList, image1 } from "../../assets";
+import { image1, emaptyWishList } from "../../assets";
+import { productContext } from "../../hooks/context/productsContext";
 import "./WishList.css";
 export const WishList = () => {
+  const { wishList, setProductDispatch, isAddedIntoCart } =
+    useContext(productContext);
   return (
     <div>
-      <div className="cart-case">
-        <h1>Products In My Wish List Is (0)</h1>
-        {/* <img
-          className="emapty-cart-img"
-          src={emaptyWishList}
-          alt="emapty cart message"
-        />
-        <center>
-          <NavLink to="/product-listing">
-            <button className="button">
-              <span>Shop Now!! </span>
-            </button>
-          </NavLink>
-        </center> */}
-      </div>
-      <div className="wishlist-product-case">
-        <div className="product wishlist-product">
-          <FontAwesomeIcon
-            icon={faXmark}
-            size="2xl"
-            className="remove-wishlist"
+      <center>
+        <h1>Products In My Wish List Is {`(${wishList.length})`}</h1>
+      </center>
+      {!wishList.length ? (
+        <div className="cart-case">
+          {" "}
+          <img
+            className="emapty-cart-img"
+            src={emaptyWishList}
+            alt="emapty cart message"
           />
-          <img className="product-img" src={image1} alt="a new collections" />
-
-          <div className="product-cantent">
-            <h2 className="product-name">product name</h2>
-            <h2>price: 900</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur </p>
-            <div className="rating-stuff">
-              <p>78% off</p>
-              <p>
-                <strong>
-                  <FontAwesomeIcon icon={faStar} />
-                  <em>3</em>
-                </strong>
-              </p>
-            </div>
-            <div className="addtocart-btn">
-              <button className="login-btns max-width-btn">
-                <FontAwesomeIcon icon={faCartShopping} /> Move To Cart
+          <center>
+            <NavLink to="/product-listing">
+              <button className="button">
+                <span>Shop Now!! </span>
               </button>
-            </div>
-          </div>
+            </NavLink>
+          </center>{" "}
         </div>
-      </div>
+      ) : (
+        <div className="wishlist-product-case">
+          {wishList.map((item) => {
+            const { category, price, title, productImg, discount, rating ,_id} =
+              item;
+            return (
+              <div className="product wishlist-product" key={_id}>
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  size="2xl"
+                  className="remove-wishlist"
+                  onClick={() =>
+                    setProductDispatch({
+                      type: "REMOVE_FROM_WISHLIST",
+                      payload: item,
+                    })
+                  }
+                />
+                <img
+                  className="product-img"
+                  src={productImg}
+                  alt="a new collections"
+                />
+
+                <div className="product-cantent">
+                  <h2 className="product-name">{category}</h2>
+                  <h2>price: {price}</h2>
+                  <p>{title}</p>
+                  <div className="rating-stuff">
+                    <p>{discount}</p>
+                    <p>
+                      <strong>
+                        <FontAwesomeIcon icon={faStar} />
+                        <em>{rating}</em>
+                      </strong>
+                    </p>
+                  </div>
+                  <div className="addtocart-btn">
+                    {isAddedIntoCart(item) ? (
+                      <NavLink to="/cart">
+                        <button className="login-btns max-width-btn">
+                          <FontAwesomeIcon icon={faCartShopping} /> Already In Cart: [Go]
+                        </button>
+                      </NavLink>
+                    ) : (
+                      <button
+                        className="login-btns max-width-btn"
+                        onClick={() =>
+                          setProductDispatch({
+                            type: "MOVE_ITEM_TO_CART",
+                            payload: item,
+                          })
+                        }
+                      >
+                        <FontAwesomeIcon icon={faCartShopping} /> Move To Cart
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

@@ -9,11 +9,11 @@ export const LogIn = () => {
         <label class="form-lable" for="name">
           Email Address*
         </label>
-        <input class="form-inp" type="text" />
+        <input class="form-inp" type="text" required />
         <label class="form-lable" for="e-mail">
           Password*
         </label>
-        <input class="form-inp" type="text" />
+        <input class="form-inp" type="text" required />
 
         <button className="login-btns">Enter Guest credentials</button>
         <button className="login-btns" type="submit">

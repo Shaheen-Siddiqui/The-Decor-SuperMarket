@@ -11,11 +11,13 @@ import {
   faHeart,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { ProductContext } from "../../hooks/context/ProductContext";
+import { filterContext } from "../../hooks/context/filterContext";
+import { productContext } from "../../hooks/context/productsContext";
 
 export const Header = () => {
   const [bars, setBars] = useState(false);
-  const { setProductDispatch } = useContext(ProductContext);
+  const { setfilterDispatch,search } = useContext(filterContext);
+  const {cart,wishList}=useContext(productContext)
 
   return (
     <div>
@@ -33,8 +35,9 @@ export const Header = () => {
               type="search"
               placeholder="Search..."
               size="30"
+              value={search}
               onChange={(event) =>
-                setProductDispatch({ type: "SEARCH_PRODUCTS", payload: event.target.value})
+                setfilterDispatch({ type: "SEARCH_PRODUCTS", payload: event.target.value})
               }
             />
           </NavLink>
@@ -47,15 +50,16 @@ export const Header = () => {
           </NavLink>
           <NavLink to="./wish-list">
             <div>
-              <p className="c-w-count">0</p>
+              <p className="c-w-count">{wishList.length}</p>
               <br />
-              <FontAwesomeIcon icon={faHeart} size="2xl" />
+              
+           <FontAwesomeIcon icon={faHeart} size="2xl" />
             </div>
           </NavLink>
 
           <NavLink to="./cart">
             <div>
-              <p className="c-w-count">9</p>
+              <p className="c-w-count">{cart.length}</p>
               <br />
               <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
             </div>
