@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { productReducer } from "../reducer/productReducer";
+import { productReducer } from "../reducer/productReducer";  
 
 
 
@@ -18,7 +18,6 @@ export const ProductContextProvider = ({ children }) => {
   const isAddedIntoWishList = (productItem) =>
     wishList.find((item) => item._id == productItem._id);
 
-    console.log(...cart,'==');
   return (
     <productContext.Provider
       value={{

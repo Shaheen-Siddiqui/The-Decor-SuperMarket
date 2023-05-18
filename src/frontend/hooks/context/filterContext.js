@@ -1,12 +1,8 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 import { filterReducer } from "../reducer/filterReducer";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
-import { ProductListing } from "../../pages/ProductListing/ProductListing";
-// import { Route } from "react-router-dom";
 
 //---------//
-
 export const filterContext = createContext();
 
 export const FilterContextProvider = ({ children }) => {
