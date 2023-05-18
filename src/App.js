@@ -1,5 +1,7 @@
 // External packages
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //internal imports
 import "./App.css";
 import { Header } from "./frontend/components/Header/Header";
@@ -16,6 +18,18 @@ import Mockman from "mockman-js";
 function App() {
   return (
     <div className="App">
+      <ToastContainer
+        position="bottom-right"
+        autoClose={500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Header />
       <div style={{ marginTop: "10rem" }}>
         <Routes>

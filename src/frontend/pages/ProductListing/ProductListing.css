@@ -31,13 +31,25 @@
     padding-bottom: 1rem;
 }
 
+.toast-styling {
+    color: black;
+    text-align: center;
+    border-top: 3px solid var(--logo-color);
+    border-left: 3px solid var(--logo-color);
+    border-right: 3px solid var(--logo-color);
+    font-size: 1.3rem;
+    font-weight: bold;
+
+}
+
 .rating-stuff {
     display: flex;
     justify-content: space-between;
     width: 25rem;
 }
-.card-pre-price{
-    text-decoration:line-through;
+
+.card-pre-price {
+    text-decoration: line-through;
     color: gray;
     /* font-weight:lighter; */
 }

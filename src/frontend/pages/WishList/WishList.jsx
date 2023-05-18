@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 //internal imports
 import { image1, emaptyWishList } from "../../assets";
@@ -22,7 +23,6 @@ export const WishList = () => {
       </center>
       {!wishList.length ? (
         <div className="cart-case">
-          {" "}
           <img
             className="emapty-cart-img"
             src={emaptyWishList}
@@ -34,25 +34,35 @@ export const WishList = () => {
                 <span>Shop Now!! </span>
               </button>
             </NavLink>
-          </center>{" "}
+          </center>
         </div>
       ) : (
         <div className="wishlist-product-case">
           {wishList.map((item) => {
-            const { category, price, title, productImg, discount, rating ,_id} =
-              item;
+            const {
+              category,
+              price,
+              title,
+              productImg,
+              discount,
+              rating,
+              _id,
+            } = item;
             return (
               <div className="product wishlist-product" key={_id}>
                 <FontAwesomeIcon
                   icon={faXmark}
                   size="2xl"
                   className="remove-wishlist"
-                  onClick={() =>
+                  onClick={() => {
                     setProductDispatch({
                       type: "REMOVE_FROM_WISHLIST",
                       payload: item,
-                    })
-                  }
+                    });
+                    toast.error("Removed From WishList", {
+                      className: "toast-styling",
+                    });
+                  }}
                 />
                 <img
                   className="product-img"
@@ -77,18 +87,22 @@ export const WishList = () => {
                     {isAddedIntoCart(item) ? (
                       <NavLink to="/cart">
                         <button className="login-btns max-width-btn">
-                          <FontAwesomeIcon icon={faCartShopping} /> Already In Cart: [Go]
+                          <FontAwesomeIcon icon={faCartShopping} /> Already In
+                          Cart: [Go]
                         </button>
                       </NavLink>
                     ) : (
                       <button
                         className="login-btns max-width-btn"
-                        onClick={() =>
+                        onClick={() => {
                           setProductDispatch({
                             type: "MOVE_ITEM_TO_CART",
                             payload: item,
-                          })
-                        }
+                          });
+                          toast.success("Moved To Cart", {
+                            className: "toast-styling",
+                          });
+                        }}
                       >
                         <FontAwesomeIcon icon={faCartShopping} /> Move To Cart
                       </button>
