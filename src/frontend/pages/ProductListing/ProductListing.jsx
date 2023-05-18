@@ -9,9 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 //internal imports
 import "./ProductListing.css";
 
@@ -108,12 +107,13 @@ export const ProductListing = () => {
                             ) : (
                               <button
                                 className="login-btns"
-                                onClick={() =>
+                                onClick={() => {
                                   setProductDispatch({
                                     type: "ADD_ITEM_TO_CART",
                                     payload: item,
-                                  })
-                                }
+                                  });
+                                  toast.success('Added To Cart!',{className:"toast-styling"})
+                                }}
                               >
                                 <FontAwesomeIcon icon={faCartPlus} /> add to
                                 cart
@@ -124,11 +124,14 @@ export const ProductListing = () => {
                             <FontAwesomeIcon
                               icon={faHeartCirclePlus}
                               className="wislist-icon"
-                              onClick={() =>
+                              onClick={() =>{
                                 setProductDispatch({
                                   type: "ADD_ITEM_TO_WISHLIST",
                                   payload: item,
                                 })
+                                toast.error("Remove Item From WishList",{className:'toast-styling'})
+                              }
+                            
                               }
                             />
                           ) : (
@@ -136,10 +139,13 @@ export const ProductListing = () => {
                               icon={faHeart}
                               className="wislist-icon"
                               onClick={() =>
-                                setProductDispatch({
+                               { setProductDispatch({
                                   type: "ADD_ITEM_TO_WISHLIST",
                                   payload: item,
                                 })
+                                toast.success("Added Item To WishList",{className:'toast-styling'})
+
+                              }
                               }
                             />
                           )}

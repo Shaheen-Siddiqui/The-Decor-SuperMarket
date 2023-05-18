@@ -1,6 +1,7 @@
 import "./SideBar.css";
 import { filterContext } from "../../hooks/context/filterContext";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 export const SideBar = () => {
   const {
@@ -21,7 +22,14 @@ export const SideBar = () => {
           <h1>Filters</h1>
 
           <button
-            onClick={() => setfilterDispatch({ type: "RESET_ALL_FILTER" })}
+            onClick={() => {
+              setfilterDispatch({ type: "RESET_ALL_FILTER" });
+              toast.success("All Filter Removed", {
+                className: "toast-styling",
+                position: "top-left",
+                autoClose: 500,
+              });
+            }}
           >
             Reset
           </button>

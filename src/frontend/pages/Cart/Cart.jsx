@@ -5,6 +5,7 @@ import {
   faSquareMinus,
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 //internal imports
 import "./Cart.css";
@@ -23,7 +24,6 @@ export const Cart = () => {
 
   const discounts = (priceOfProductsWithQuantity * 45) / 100;
   const totalPrice = priceOfProductsWithQuantity - discounts;
-
 
   return (
     <div>
@@ -81,10 +81,12 @@ export const Cart = () => {
                         size="xl"
                         className="qty-logo"
                         onClick={() =>
-                          setProductDispatch({
+                          {setProductDispatch({
                             type: "PRODUCT_QUANTITY_DECREMENT",
                             payload: item,
                           })
+                          toast.error("You Have Decreased Quantity",{className:"toast-styling"})
+                        }
                         }
                       />
                       <h4>{quantity}</h4>
@@ -92,12 +94,15 @@ export const Cart = () => {
                         icon={faSquarePlus}
                         size="xl"
                         className="qty-logo"
-                        onClick={() =>
+                        onClick={() => {
                           setProductDispatch({
                             type: "PRODUCT_QUANTITY_INCREMENT",
                             payload: item,
-                          })
-                        }
+                          });
+                          toast.success("You Have Increased Quantity", {
+                            className: "toast-styling",
+                          });
+                        }}
                       />
                     </div>
                     {isAddedIntoWishList(item) ? (
@@ -109,12 +114,15 @@ export const Cart = () => {
                     ) : (
                       <button
                         className="card-btn"
-                        onClick={() =>
+                        onClick={() => {
                           setProductDispatch({
                             type: "MOVE_ITEM_TO_WISHLIST",
                             payload: item,
-                          })
-                        }
+                          });
+                          toast.success("Moved To WishList", {
+                            className: "toast-styling",
+                          });
+                        }}
                       >
                         Move To Wishlist
                       </button>
@@ -122,12 +130,15 @@ export const Cart = () => {
 
                     <button
                       className="card-btn remove-card-btn"
-                      onClick={() =>
+                      onClick={() => {
                         setProductDispatch({
                           type: "REMOVE_FROM_CART",
                           payload: item,
-                        })
-                      }
+                        });
+                        toast.error("Romoved From Cart", {
+                          className: "toast-styling",
+                        });
+                      }}
                     >
                       Remove From Cart
                     </button>
@@ -142,9 +153,7 @@ export const Cart = () => {
                 <FontAwesomeIcon icon={faTag} size="sm" />
                 Have A Coupon?
               </p>
-              <button className="hrd-login-btn" >
-                Apply
-              </button>
+              <button className="hrd-login-btn">Apply</button>
             </div>
             <h2 className="price-details">Price details</h2>
             <div className="price-string-number">
