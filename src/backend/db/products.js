@@ -12,8 +12,8 @@ export const products = [
     _id: uuid(),
     productImg: "https://shop.gkwretail.com/cdn/shop/products/DressingTableWhiteandGoldVanitySetwithLightedMirror_Stool_1024x1024.jpg?v=1630488000",
     title: 'Nivea Pearl And Beauty Dressing Table',
-    price: '256',
-    prePrice: '789',
+    price: '256', //(discounted price)
+    prePrice: '789', //(it was original price)
     discount: '59% off',
     rating: '3',
     category: 'Dressing Table',

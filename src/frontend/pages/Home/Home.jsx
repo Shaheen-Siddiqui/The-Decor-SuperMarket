@@ -49,7 +49,7 @@ export const Home = () => {
       <div className="home-categories">
         {imageObject.map(({ image, desc }) => {
           return (
-            <NavLink to="/product-listing">
+            <NavLink to="/product-listing" key={desc}>
               <figure>
                 <img className="uniq-img" src={image} alt={desc} />
                 <h2>{desc}</h2>

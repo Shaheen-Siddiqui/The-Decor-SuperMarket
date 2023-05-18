@@ -16,22 +16,23 @@ import axios from "axios";
 import "./ProductListing.css";
 
 import { SideBar } from "../../components/SideBar/SideBar";
-import {
-  filterContext,
-  
-} from "../../hooks/context/filterContext";
+import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
 
 export const ProductListing = () => {
-  const { search, filterProductByPriceRange, filterBySearch,fetchProducts,productLoding } =
-    useContext(filterContext);
+  const {
+    search,
+    filterProductByPriceRange,
+    filterBySearch,
+    fetchProducts,
+    productLoding,
+  } = useContext(filterContext);
 
   const { setProductDispatch, isAddedIntoCart, isAddedIntoWishList } =
     useContext(productContext);
 
-
   useEffect(() => {
-      fetchProducts();
+    fetchProducts();
   }, []);
 
   return (

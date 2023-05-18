@@ -9,11 +9,22 @@ import {
 //internal imports
 import "./Cart.css";
 import { empatyCart } from "../../assets";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { productContext } from "../../hooks/context/productsContext";
 
 export const Cart = () => {
-  const { cart, setProductDispatch, isAddedIntoWishList } = useContext(productContext);
+  const { cart, setProductDispatch, isAddedIntoWishList } =
+    useContext(productContext);
+
+  const priceOfProductsWithQuantity = cart.reduce(
+    (acc, { prePrice, quantity }) => (acc = acc + Number(prePrice)) * quantity,
+    0
+  );
+
+  const discounts = (priceOfProductsWithQuantity * 45) / 100;
+  const totalPrice = priceOfProductsWithQuantity - discounts;
+
+
   return (
     <div>
       <center>
@@ -38,7 +49,15 @@ export const Cart = () => {
         <section className="cart-page-detail-case">
           <div className="single-card-wrap">
             {cart.map((item) => {
-              const { prePrice, category, price, productImg ,quantity,_id} = item;
+              const {
+                prePrice,
+                category,
+                price,
+                productImg,
+                quantity,
+                _id,
+                discount,
+              } = item;
               return (
                 <div className="single-card" key={_id}>
                   <img
@@ -49,7 +68,11 @@ export const Cart = () => {
                   <div className="card-rightside">
                     <h2 className="card-heading">{category}</h2>
                     <div className="product-price">
-                      <h2>₹ {price}</h2> <p>₹ {prePrice}</p>
+                      <h2>₹ {price}</h2>{" "}
+                      <p className="card-pre-price">₹ {prePrice}</p>
+                    </div>
+                    <div className="product-price">
+                      <h4 className="discount-price">{discount}</h4>
                     </div>
                     <div className="product-quantity">
                       <p>Quantity:</p>
@@ -74,7 +97,7 @@ export const Cart = () => {
                             type: "PRODUCT_QUANTITY_INCREMENT",
                             payload: item,
                           })
-                        } 
+                        }
                       />
                     </div>
                     {isAddedIntoWishList(item) ? (
@@ -119,7 +142,9 @@ export const Cart = () => {
                 <FontAwesomeIcon icon={faTag} size="sm" />
                 Have A Coupon?
               </p>
-              <button className="hrd-login-btn">Apply</button>
+              <button className="hrd-login-btn" >
+                Apply
+              </button>
             </div>
             <h2 className="price-details">Price details</h2>
             <div className="price-string-number">
@@ -130,17 +155,19 @@ export const Cart = () => {
                 <p>Coupon Discount</p>
               </div>
               <div className="price-numbers">
-                <p>₹ 900</p>
-                <p>-₹ 590</p>
+                <p>₹ {priceOfProductsWithQuantity}</p>
+                <p>-₹ {discounts}</p>
                 <p>FREE</p>
-                <p>₹ 0.00</p>
+                <p>₹ 30%</p>
               </div>
             </div>
             <div className="total-amount-case">
               <h2>Total Amount</h2>
-              <h2>₹ 370.00</h2>
+              <h2>₹ {totalPrice}</h2>
             </div>
-            <p className="discount-price">you will save ₹.... on this order</p>
+            <p className="discount-price">
+              you will save ₹ {discounts} on this order
+            </p>
             <button className="login-btns checkout-btn">Checkout</button>
           </div>
         </section>
