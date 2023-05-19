@@ -1,16 +1,16 @@
 .all-products-page {
-    margin-left: 26rem;
-    padding: 3rem 9rem;
+    gap: 4rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 4rem;
+    margin-left: 26rem;
+    padding: 3rem 9rem;
 }
 
 .product {
     width: 30rem;
+    margin-left: 1rem;
     box-shadow: 0 0 5px 3px rgba(158, 150, 150, 0.7);
     border-radius: var(--border-radius);
-    margin-left: 1rem;
 }
 
 .product-cantent {
@@ -26,32 +26,31 @@
 }
 
 .product-name {
-    text-transform: uppercase;
     text-align: center;
     padding-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 .toast-styling {
     color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
     text-align: center;
     border-top: 3px solid var(--logo-color);
     border-left: 3px solid var(--logo-color);
     border-right: 3px solid var(--logo-color);
-    font-size: 1.3rem;
-    font-weight: bold;
 
 }
 
 .rating-stuff {
     display: flex;
-    justify-content: space-between;
     width: 25rem;
+    justify-content: space-between;
 }
 
 .card-pre-price {
-    text-decoration: line-through;
     color: gray;
-    /* font-weight:lighter; */
+    text-decoration: line-through;
 }
 
 .addtocart-btn button {
@@ -61,13 +60,25 @@
 
 .wislist-icon {
     color: red;
-    font-size: 2.8rem;
+    padding: 0.5rem;
     cursor: pointer;
-    padding: 0.5rem
+    font-size: 2.8rem;
 }
 
 .cart-wishlist {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+}
+
+.product-detail-page {
+    width: 70rem;
+    padding: 3rem;
+    border-radius: 10rem;
+    border-top: 2rem groove var(--logo-color);
+    border-bottom: 2rem groove var(--logo-color);
+}
+
+.product-detail-cantent {
+    width: 30rem;
 }

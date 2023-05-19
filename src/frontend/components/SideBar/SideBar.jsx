@@ -13,7 +13,9 @@ export const SideBar = () => {
     sofa,
     luxurySets,
     dressingTables,
+    filteredArray
   } = useContext(filterContext);
+  
 
   return (
     <>

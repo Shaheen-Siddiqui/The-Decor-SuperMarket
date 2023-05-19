@@ -7,10 +7,12 @@ import "./App.css";
 import { Header } from "./frontend/components/Header/Header";
 import { ProductListing } from "./frontend/pages/ProductListing/ProductListing";
 import { Home } from "./frontend/pages/Home/Home";
+import { ProductDetail } from "./frontend/pages/ProductDetail/ProductDetail";
 import { Cart } from "./frontend/pages/Cart/Cart";
 import { WishList } from "./frontend/pages/WishList/WishList";
 import { LogIn } from "./frontend/pages/Authentication/Login";
 import { SignUp } from "./frontend/pages/Authentication/Signup";
+import {ProductListingCategoryWise} from './frontend/pages/ProductDetail/ProductListingCategoryWise'
 
 //
 import Mockman from "mockman-js";
@@ -39,7 +41,9 @@ function App() {
           <Route path="/wish-list" element={<WishList />} />
           <Route path="/product-listing" element={<ProductListing />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/product-detail/:productId" element={<ProductDetail/>} />
           <Route path="/mock" element={<Mockman />} />
+          <Route path="/product-listing/:categoriesName" element={<ProductListingCategoryWise />}/>
         </Routes>
       </div>
     </div>

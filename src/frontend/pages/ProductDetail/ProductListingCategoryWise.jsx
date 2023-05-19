@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import {
   faStar,
@@ -9,31 +10,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 //internal imports
-import "./ProductListing.css";
-import { SideBar } from "../../components/SideBar/SideBar";
-import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
+import { filterContext } from "../../hooks/context/filterContext";
+import { SideBar } from "../../components/SideBar/SideBar";
+export const ProductListingCategoryWise = () => {
+  const { categoriesName } = useParams();
 
-export const ProductListing = () => {
-  const {
-    search,
-    filterProductByPriceRange,
-    filterBySearch,
-    fetchProducts,
-    productLoding,
-  } = useContext(filterContext);
-
-  const { setProductDispatch, isAddedIntoCart, isAddedIntoWishList } =
-    useContext(productContext);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
+  const { setProductDispatch, isAddedIntoCart, isAddedIntoWishList } = useContext(productContext);
+  const { filteredArray,search, products, filterProductByPriceRange, filterBySearch, productLoding } = useContext(filterContext);
+  const onlyMatchCategories = products.filter(({ category }) =>[categoriesName].some((item) => category == item));
+ 
+console.log(filteredArray);
   return (
     <>
       <SideBar />
@@ -61,7 +51,7 @@ export const ProductListing = () => {
               >{`Opps! nothing Matches Title: ${search}`}</h1>
             ) : (
               <>
-                {filterProductByPriceRange.map((item) => {
+                {onlyMatchCategories.map((item) => {
                   const {
                     category,
                     rating,
