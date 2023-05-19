@@ -1,5 +1,6 @@
 export const filterReducer = (filterState, { type, payload }) => {
   switch (type) {
+    
     case "SEARCH_PRODUCTS":
       return {
         ...filterState,
@@ -10,7 +11,7 @@ export const filterReducer = (filterState, { type, payload }) => {
         ...filterState,
         beds: !payload,
         filteredArray: filterState.filteredArray.includes("Bed")
-          ? filterState.filteredArray.filter((value) => value !== "Bed")
+          ? filterState.filteredArray.filter((value) => value !== "Bed") 
           : [...filterState.filteredArray, "Bed"],
       };
 

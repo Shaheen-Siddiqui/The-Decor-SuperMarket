@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { filterReducer } from "../reducer/filterReducer";
 import axios from "axios";
 
@@ -6,6 +6,8 @@ import axios from "axios";
 export const filterContext = createContext();
 
 export const FilterContextProvider = ({ children }) => {
+  const [productLoding, setProductLoading] = useState(false);
+  const [categoriesData, setCategoriesData] = useState([]);
   const [products, setProducts] = useState([]);
 
   const [filterState, setfilterDispatch] = useReducer(filterReducer, {
@@ -31,7 +33,6 @@ export const FilterContextProvider = ({ children }) => {
     dressingTables,
     priceRange,
   } = filterState;
-  const [productLoding, setProductLoading] = useState(false);
 
   async function fetchProducts() {
     setProductLoading(true);
@@ -39,6 +40,17 @@ export const FilterContextProvider = ({ children }) => {
     setProductLoading(false);
     setProducts(Response.data.products);
   }
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const Response = await axios.get("/api/categories");
+      setCategoriesData(Response.data.categories);
+    }
+    fetchCategories();
+  }, []);
 
   let filterBySearch =
     search.length > 0
@@ -83,7 +95,10 @@ export const FilterContextProvider = ({ children }) => {
         dressingTables,
         filterBySearch,
         fetchProducts,
-        productLoding
+        productLoding,
+        categoriesData,
+        products,
+        filteredArray,
       }}
     >
       {children}

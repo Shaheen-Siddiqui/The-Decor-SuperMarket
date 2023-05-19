@@ -1,18 +1,21 @@
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import {
   faStar,
   faCartShopping,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 
 //internal imports
-import { image1, emaptyWishList } from "../../assets";
+import {  emaptyWishList } from "../../assets";
 import { productContext } from "../../hooks/context/productsContext";
 import "./WishList.css";
+
+
+
+
 export const WishList = () => {
   const { wishList, setProductDispatch, isAddedIntoCart } =
     useContext(productContext);
