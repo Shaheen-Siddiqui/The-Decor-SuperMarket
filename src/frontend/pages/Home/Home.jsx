@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 //internal imports
 import "./Home.css";
 import { Footer } from "../../components/Footer/Footer";
@@ -13,18 +13,18 @@ import {
 import { filterContext } from "../../hooks/context/filterContext";
 
 export const Home = () => {
-  const { categoriesData, setfilterDispatch } =useContext(filterContext);
+  const { categoriesData, setfilterDispatch } = useContext(filterContext);
 
   return (
     <>
       <div className="hero-img-case">
         <img src={purple} alt="hero-image" className="hero-image" />
         <center>
-          <NavLink to="/product-listing">
+          <Link to="/product-listing">
             <button className="button">
               <span>Shop Now!! </span>
             </button>
-          </NavLink>
+          </Link>
         </center>
       </div>
 
@@ -34,11 +34,7 @@ export const Home = () => {
       <div className="home-categories">
         {categoriesData.map(({ categoryImage, categoryName }) => {
           return (
-            <NavLink
-              to={`/product-listing/${categoryName}`}
-              key={categoryName}
-             
-            >
+            <Link to={`/product-listing/${categoryName}`} key={categoryName}>
               <figure>
                 <img
                   className="uniq-img"
@@ -47,7 +43,7 @@ export const Home = () => {
                 />
                 <h2>{categoryName}</h2>
               </figure>
-            </NavLink>
+            </Link>
           );
         })}
       </div>
@@ -64,6 +60,7 @@ export const Home = () => {
     </>
   );
 };
+
 // onClick={() =>
 //   setfilterDispatch({
 //     type:
@@ -78,3 +75,4 @@ export const Home = () => {
 //         : "SEARCH_PRODUCTS",
 //   })
 // }
+export { Home as default };

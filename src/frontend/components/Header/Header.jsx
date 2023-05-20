@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
 import "./Header.css";
@@ -21,6 +21,7 @@ export const Header = () => {
   const { setfilterDispatch, search } = useContext(filterContext);
   const { cart, wishList } = useContext(productContext);
   const { token, setAuthDispatch } = useContext(authContext);
+  const navigate=useNavigate()
 
   const userLogoutHandler = () => {
     setAuthDispatch({ type: "USER_LOGOUT" });
@@ -34,15 +35,15 @@ export const Header = () => {
   return (
     <div>
       <div className="header-container">
-        <NavLink to="/" className="remove-ud">
+        <Link to="/" className="remove-ud">
           <div className="hdr-logo">
             <FontAwesomeIcon icon={faBlenderPhone} />
             <h2 className="logo-name">~Decor Super Market~</h2>
           </div>
-        </NavLink>
+        </Link>
 
         <div className="search-baar">
-          <NavLink to="./product-listing">
+          <Link to="./product-listing">
             <input
               type="search"
               placeholder="Search..."
@@ -55,32 +56,32 @@ export const Header = () => {
                 })
               }
             />
-          </NavLink>
+          </Link>
           <FontAwesomeIcon icon={faMagnifyingGlass} size="xl" />
         </div>
 
         <div className="hdr-right-side">
-          <NavLink to="./product-listing" className="remove-ud">
+          <Link to="/product-listing" className="remove-ud">
             <h2>Explore</h2>
-          </NavLink>
-          <NavLink to="./wish-list">
+          </Link>
+          <Link to="/wish-list">
             <div>
               <p className="c-w-count">{wishList.length}</p>
               <br />
 
               <FontAwesomeIcon icon={faHeart} size="2xl" />
             </div>
-          </NavLink>
+          </Link>
 
-          <NavLink to="./cart">
+          <Link to="/cart">
             <div>
               <p className="c-w-count">{cart.length}</p>
               <br />
               <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
             </div>
-          </NavLink>
+          </Link>
           <FontAwesomeIcon icon={faAddressCard} size="2xl" />
-          <NavLink to="/login">
+          <Link to="/login">
             {token ? (
               <button className="hrd-login-btn" onClick={userLogoutHandler}>
                 Log out
@@ -88,7 +89,7 @@ export const Header = () => {
             ) : (
               <button className="hrd-login-btn">Log in</button>
             )}
-          </NavLink>
+          </Link>
         </div>
 
         <div
@@ -131,3 +132,5 @@ export const Header = () => {
     </div>
   );
 };
+
+export {Header as default}

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -163,14 +163,16 @@ export const SignUp = () => {
 
           <p className="new-account">
             Already have account?
-            <NavLink to="/login">
+            <Link to="/login">
               <strong>
                 <u>Login Here</u>
               </strong>
-            </NavLink>
+            </Link>
           </p>
         </form>
       </div>
     </>
   );
 };
+
+export {SignUp as default}

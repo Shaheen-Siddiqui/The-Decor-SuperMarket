@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, lazy, Suspense } from "react";
 import {
   faStar,
   faCartPlus,
@@ -8,15 +8,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 //internal imports
 import "./ProductListing.css";
-import { SideBar } from "../../components/SideBar/SideBar";
 import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
+const SideBar = lazy(() => import("../../components/SideBar/SideBar"));
 
 export const ProductListing = () => {
   const {
@@ -36,7 +36,9 @@ export const ProductListing = () => {
 
   return (
     <>
-      <SideBar />
+      <Suspense fallback="Loading...">
+        <SideBar />
+      </Suspense>
       <center>
         <h2>Total product: {filterProductByPriceRange.length} </h2>
       </center>
@@ -101,12 +103,12 @@ export const ProductListing = () => {
                         <div className="cart-wishlist">
                           <div className="addtocart-btn">
                             {isAddedIntoCart(item) ? (
-                              <NavLink to="/cart">
+                              <Link to="/cart">
                                 <button className="login-btns">
                                   <FontAwesomeIcon icon={faRightToBracket} /> Go
                                   to cart
                                 </button>
-                              </NavLink>
+                              </Link>
                             ) : (
                               <button
                                 className="login-btns"
@@ -167,3 +169,5 @@ export const ProductListing = () => {
     </>
   );
 };
+
+export { ProductListing as default };

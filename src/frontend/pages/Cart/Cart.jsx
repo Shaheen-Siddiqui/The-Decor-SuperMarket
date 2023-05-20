@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTag,
@@ -38,11 +38,11 @@ export const Cart = () => {
             alt="emapty cart message"
           />
           <center>
-            <NavLink to="/product-listing">
+            <Link to="/product-listing">
               <button className="button">
                 <span>Shop Now!! </span>
               </button>
-            </NavLink>
+            </Link>
           </center>
         </div>
       ) : (
@@ -106,11 +106,11 @@ export const Cart = () => {
                       />
                     </div>
                     {isAddedIntoWishList(item) ? (
-                      <NavLink to="/wish-list">
+                      <Link to="/wish-list">
                         <button className="card-btn">
                           ℹ️tem is Already In Wishlist
                         </button>
-                      </NavLink>
+                      </Link>
                     ) : (
                       <button
                         className="card-btn"
@@ -184,3 +184,5 @@ export const Cart = () => {
     </div>
   );
 };
+
+export {Cart as default}
