@@ -4,7 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { FilterContextProvider } from "./frontend/hooks/context/filterContext";
 import { ProductContextProvider } from "./frontend/hooks/context/productsContext";
-
+import { AuthContextProveder } from "./frontend/hooks/context/authContext";
 // for starting app with mockMan
 import { makeServer } from "./server";
 
@@ -13,13 +13,15 @@ makeServer();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthContextProveder>
       <ProductContextProvider>
         <FilterContextProvider>
           <App />
         </FilterContextProvider>
       </ProductContextProvider>
-    </BrowserRouter>
+    </AuthContextProveder>
+  </BrowserRouter>
   // </React.StrictMode>
 );
 
