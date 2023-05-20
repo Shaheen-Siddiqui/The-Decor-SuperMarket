@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 //internal imports
@@ -91,12 +91,12 @@ console.log(filteredArray);
                         <div className="cart-wishlist">
                           <div className="addtocart-btn">
                             {isAddedIntoCart(item) ? (
-                              <NavLink to="/cart">
+                              <Link to="/cart">
                                 <button className="login-btns">
                                   <FontAwesomeIcon icon={faRightToBracket} /> Go
                                   to cart
                                 </button>
-                              </NavLink>
+                              </Link>
                             ) : (
                               <button
                                 className="login-btns"
@@ -157,3 +157,5 @@ console.log(filteredArray);
     </>
   );
 };
+
+export {ProductListingCategoryWise as default}

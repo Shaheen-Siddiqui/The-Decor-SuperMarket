@@ -2,6 +2,7 @@ import "./SideBar.css";
 import { filterContext } from "../../hooks/context/filterContext";
 import { useContext } from "react";
 import { toast } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
 
 export const SideBar = () => {
   const {
@@ -13,9 +14,10 @@ export const SideBar = () => {
     sofa,
     luxurySets,
     dressingTables,
-    filteredArray
+    filteredArray,
   } = useContext(filterContext);
-  
+
+  const [_, setSearchParams] = useSearchParams();
 
   return (
     <>
@@ -25,6 +27,7 @@ export const SideBar = () => {
 
           <button
             onClick={() => {
+              setSearchParams({});
               setfilterDispatch({ type: "RESET_ALL_FILTER" });
               toast.success("All Filter Removed", {
                 className: "toast-styling",
@@ -36,7 +39,10 @@ export const SideBar = () => {
             Reset
           </button>
         </div>
-        <div className="price-case">
+        <div
+          className="price-case"
+          onClick={() => setSearchParams({ filter: "active" })}
+        >
           <h1 className="filter-price">Price</h1>
           <p>(₹ 0 - ₹ {!priceRange ? 1200 : priceRange} )</p>
           <input
@@ -55,7 +61,10 @@ export const SideBar = () => {
           />
         </div>
 
-        <div className="category-case">
+        <div
+          className="category-case"
+          onClick={() => setSearchParams({ filter: "active" })}
+        >
           <h3>Category</h3>
           <label htmlFor="bed">
             <input
@@ -119,7 +128,10 @@ export const SideBar = () => {
           </label>
         </div>
 
-        <div className="rating-case">
+        <div
+          className="rating-case"
+          onClick={() => setSearchParams({ filter: "active" })}
+        >
           <h3>Rating</h3>
           <label htmlFor="4&above">
             <input
@@ -186,7 +198,10 @@ export const SideBar = () => {
           </label>
         </div>
 
-        <div className="price-sorting-case">
+        <div
+          className="price-sorting-case"
+          onClick={() => setSearchParams({ filter: "active" })}
+        >
           <h3>Sort By</h3>
 
           <label htmlFor="high-to-low">
@@ -226,3 +241,5 @@ export const SideBar = () => {
     </>
   );
 };
+
+export { SideBar as default };

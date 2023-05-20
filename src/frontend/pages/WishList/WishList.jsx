@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   faStar,
   faCartShopping,
@@ -32,11 +32,11 @@ export const WishList = () => {
             alt="emapty cart message"
           />
           <center>
-            <NavLink to="/product-listing">
+            <Link to="/product-listing">
               <button className="button">
                 <span>Shop Now!! </span>
               </button>
-            </NavLink>
+            </Link>
           </center>
         </div>
       ) : (
@@ -88,12 +88,12 @@ export const WishList = () => {
                   </div>
                   <div className="addtocart-btn">
                     {isAddedIntoCart(item) ? (
-                      <NavLink to="/cart">
+                      <Link to="/cart">
                         <button className="login-btns max-width-btn">
                           <FontAwesomeIcon icon={faCartShopping} /> Already In
                           Cart: [Go]
                         </button>
-                      </NavLink>
+                      </Link>
                     ) : (
                       <button
                         className="login-btns max-width-btn"
@@ -120,3 +120,6 @@ export const WishList = () => {
     </div>
   );
 };
+
+export {WishList as default}
+

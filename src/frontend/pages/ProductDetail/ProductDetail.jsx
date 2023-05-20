@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
@@ -94,11 +94,11 @@ export const ProductDetail = () => {
               <div className="cart-wishlist">
                 <div className="addtocart-btn">
                   {isAddedIntoCart(singleProduct) ? (
-                    <NavLink to="/cart">
+                    <Link to="/cart">
                       <button className="login-btns">
                         <FontAwesomeIcon icon={faRightToBracket} /> Go to cart
                       </button>
-                    </NavLink>
+                    </Link>
                   ) : (
                     <button
                       className="login-btns"
@@ -148,14 +148,17 @@ export const ProductDetail = () => {
               </div>
             </div>
           </div>
-           <NavLink to="/product-listing">
+           <Link to="/product-listing">
              <button className="button">
                <span>Go Back </span>
              </button>
-           </NavLink> 
+           </Link> 
          </> 
       )}
       </div>
     </center>
   );
 };
+
+export {ProductDetail as default}
+
