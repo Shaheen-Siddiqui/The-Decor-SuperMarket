@@ -7,6 +7,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 // lazy loads for optimised the code performance
 import "./App.css";
+import { RequireAuth } from "./RequireAuth";
 import Mockman from "mockman-js";
 const Home = lazy(() => import("./frontend/pages/Home/Home"));
 const Cart = lazy(() => import("./frontend/pages/Cart/Cart"));
@@ -56,10 +57,27 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
+
+            {/* PRIVATE PAGES  */}
+            <Route
+              path="/cart"
+              element={
+                <RequireAuth>
+                  <Cart />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/wish-list"
+              element={
+                <RequireAuth>
+                  <WishList />
+                </RequireAuth>
+              }
+            />
+            {/*  -------------*/}
 
             <Route path="/login" element={<LogIn />} />
-            <Route path="/wish-list" element={<WishList />} />
             <Route path="/product-listing" element={<ProductListing />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route

@@ -7,7 +7,9 @@ export async function obtainSignedUpUserData(
   password,
   fullName,
   isPasswordMatch,
-  setAuthDispatch
+  setAuthDispatch,
+  navigate,
+  RedirecToLocation
 ) {
   if (isPasswordMatch()) {
     try {
@@ -23,6 +25,7 @@ export async function obtainSignedUpUserData(
           className: "toast-styling",
           autoClose: 2000,
         });
+
         setAuthDispatch({
           type: "USER_SIGNUP",
           payload: {
@@ -30,6 +33,7 @@ export async function obtainSignedUpUserData(
             token: Response.data.encodedToken,
           },
         });
+        navigate(RedirecToLocation, { replace: true });
       } else {
         toast.error("Something went wrong", {
           className: "toast-styling",

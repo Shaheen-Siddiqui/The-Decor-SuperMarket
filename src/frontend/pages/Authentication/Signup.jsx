@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -10,6 +10,10 @@ import { obtainSignedUpUserData } from "./authApiCall/signUpApi";
 import { authContext } from "../../hooks/context/authContext";
 
 export const SignUp = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const RedirecToLocation = location.state?.pathname || "/";
+
   const [passwordIcon, setPasswordIcon] = useState(false);
   const [confirmPasswordIcon, seConfirmPasswordIcon] = useState(false);
   const { setAuthDispatch } = useContext(authContext);
@@ -39,7 +43,9 @@ export const SignUp = () => {
       password,
       fullName,
       isPasswordMatch,
-      setAuthDispatch
+      setAuthDispatch,
+      navigate,
+      RedirecToLocation
     );
   };
 
@@ -175,4 +181,4 @@ export const SignUp = () => {
   );
 };
 
-export {SignUp as default}
+export { SignUp as default };

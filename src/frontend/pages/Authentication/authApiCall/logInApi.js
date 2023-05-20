@@ -2,11 +2,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "../../ProductListing/ProductListing.css";
 
-export async function obtainLoggedInUserData(email, password, setAuthDispatch) {
+export async function obtainLoggedInUserData(
+  email,
+  password,
+  setAuthDispatch,
+  navigate,
+  RedirecToLocation
+) {
   try {
     const Response = await axios.post("/api/auth/login", { email, password });
     if (Response.status == 200) {
-      console.log(Response.data);
       localStorage.setItem("user", JSON.stringify(Response.data.foundUser));
       localStorage.setItem("token", JSON.stringify(Response.data.encodedToken));
       setAuthDispatch({
@@ -16,6 +21,7 @@ export async function obtainLoggedInUserData(email, password, setAuthDispatch) {
           token: Response.data.encodedToken,
         },
       });
+      navigate(RedirecToLocation, { replace: true });
       toast.success("successfully logged in", {
         className: "toast-styling",
         autoClose: 2000,
