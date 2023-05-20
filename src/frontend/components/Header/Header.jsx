@@ -13,12 +13,24 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
+import { authContext } from "../../hooks/context/authContext";
+import { toast } from "react-toastify";
 
 export const Header = () => {
   const [bars, setBars] = useState(false);
-  const { setfilterDispatch,search } = useContext(filterContext);
-  const {cart,wishList}=useContext(productContext)
+  const { setfilterDispatch, search } = useContext(filterContext);
+  const { cart, wishList } = useContext(productContext);
+  const { token, setAuthDispatch } = useContext(authContext);
 
+  const userLogoutHandler = () => {
+    setAuthDispatch({ type: "USER_LOGOUT" });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    toast.info("logged out successfully", {
+      autoClose: 2000,
+      className: "toast-styling",
+    });
+  };
   return (
     <div>
       <div className="header-container">
@@ -37,7 +49,10 @@ export const Header = () => {
               size="30"
               value={search}
               onChange={(event) =>
-                setfilterDispatch({ type: "SEARCH_PRODUCTS", payload: event.target.value})
+                setfilterDispatch({
+                  type: "SEARCH_PRODUCTS",
+                  payload: event.target.value,
+                })
               }
             />
           </NavLink>
@@ -52,8 +67,8 @@ export const Header = () => {
             <div>
               <p className="c-w-count">{wishList.length}</p>
               <br />
-              
-           <FontAwesomeIcon icon={faHeart} size="2xl" />
+
+              <FontAwesomeIcon icon={faHeart} size="2xl" />
             </div>
           </NavLink>
 
@@ -66,7 +81,13 @@ export const Header = () => {
           </NavLink>
           <FontAwesomeIcon icon={faAddressCard} size="2xl" />
           <NavLink to="/login">
-            <button className="hrd-login-btn">Login</button>
+            {token ? (
+              <button className="hrd-login-btn" onClick={userLogoutHandler}>
+                Log out
+              </button>
+            ) : (
+              <button className="hrd-login-btn">Log in</button>
+            )}
           </NavLink>
         </div>
 
