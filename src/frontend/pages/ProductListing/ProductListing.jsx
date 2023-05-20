@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import "./ProductListing.css";
 import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
-const SideBar = lazy(() => import("../../components/SideBar/SideBar"));
+import { SideBar } from "../../components/SideBar/SideBar";
 
 export const ProductListing = () => {
   const {
@@ -36,9 +36,7 @@ export const ProductListing = () => {
 
   return (
     <>
-      <Suspense fallback="Loading...">
-        <SideBar />
-      </Suspense>
+      <SideBar />
       <center>
         <h2>Total product: {filterProductByPriceRange.length} </h2>
       </center>
@@ -77,11 +75,11 @@ export const ProductListing = () => {
                   return (
                     <div className="product" key={_id}>
                       <a href={`/product-detail/${_id}`}>
-                        <img
+                        {/* <img
                           className="product-img"
                           src={productImg}
                           alt="a new collections"
-                        />
+                        /> */}
                       </a>
 
                       <div className="product-cantent">

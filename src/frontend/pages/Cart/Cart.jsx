@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 //internal imports
 import "./Cart.css";
+import '../Authentication/authentication.css'
 import { empatyCart } from "../../assets";
 import { useContext, useEffect, useState } from "react";
 import { productContext } from "../../hooks/context/productsContext";

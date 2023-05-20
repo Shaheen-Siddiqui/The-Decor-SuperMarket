@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,9 @@ import { obtainLoggedInUserData } from "./authApiCall/logInApi";
 import { authContext } from "../../hooks/context/authContext";
 
 export const LogIn = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const RedirecToLocation = location.state?.pathname || "/";
   const [passwordIcon, setPasswordIcon] = useState(false);
 
   const [userLoginCredential, setUserLoginCredential] = useState({
@@ -19,8 +22,13 @@ export const LogIn = () => {
 
   const userLoginHandler = (event) => {
     event.preventDefault();
-    console.log(userLoginCredential);
-    obtainLoggedInUserData(email, password, setAuthDispatch);
+    obtainLoggedInUserData(
+      email,
+      password,
+      setAuthDispatch,
+      navigate,
+      RedirecToLocation
+    );
   };
 
   const guestCredentialHandler = (event) => {
@@ -29,7 +37,6 @@ export const LogIn = () => {
       email: "admin@gmail.com",
       password: "admin_123",
     });
-    console.log(userLoginCredential);
     event.preventDefault();
   };
 
@@ -109,4 +116,4 @@ export const LogIn = () => {
   );
 };
 
-export {LogIn as default }
+export { LogIn as default };

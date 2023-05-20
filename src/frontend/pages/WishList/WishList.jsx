@@ -11,7 +11,10 @@ import { toast } from "react-toastify";
 //internal imports
 import {  emaptyWishList } from "../../assets";
 import { productContext } from "../../hooks/context/productsContext";
+
 import "./WishList.css";
+import '../Cart/Cart.css'
+import '../ProductListing/ProductListing.css'
 
 
 

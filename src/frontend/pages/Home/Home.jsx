@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+
 //internal imports
 import "./Home.css";
+import "../../components/Header/Header.css";
 import { Footer } from "../../components/Footer/Footer";
 import {
   purple,

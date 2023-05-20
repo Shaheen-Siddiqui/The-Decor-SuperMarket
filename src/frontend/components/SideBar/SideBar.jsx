@@ -242,4 +242,3 @@ export const SideBar = () => {
   );
 };
 
-export { SideBar as default };
