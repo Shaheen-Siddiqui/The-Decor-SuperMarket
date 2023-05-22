@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import "./UserProfile.css";
 import "../../components/Header/Header.css";
 import "../Authentication/authentication.css";
 import { SavedAddress } from "./SavedAddress";
 import { productContext } from "../../hooks/context/productsContext";
+import { toast } from "react-toastify";
 
 export const UserProfile = () => {
+  const [isEdit, setIsEdit] = useState(false);
   const {
     userAddress: {
       hoseNumber,
@@ -21,19 +23,29 @@ export const UserProfile = () => {
 
   const addressHandler = (event) => {
     event.preventDefault();
-    setProductDispatch({ type: "ADDRESS_FORM_SUBMIT" });
+    if (
+      hoseNumber &&
+      city &&
+      state &&
+      countaryName &&
+      postalCode &&
+      mobileNumber
+    ) {
+      setProductDispatch({ type: "ADDRESS_FORM_SUBMIT" });
+    }
   };
 
   return (
     <>
       <div className="form-container" id="address-form-case">
-
         <form
-          className="login-form signup-form" id="address-form"
+          className="login-form signup-form"
+          id="address-form"
           onSubmit={addressHandler}
         >
           <h1 className="form-text">Manage Address</h1>&nbsp;
           <input
+            required
             value={hoseNumber}
             autoComplete="off"
             // required
@@ -54,6 +66,7 @@ export const UserProfile = () => {
           />
           &nbsp;
           <input
+            required
             value={city}
             className="form-inp"
             type="city"
@@ -73,7 +86,7 @@ export const UserProfile = () => {
           />
           &nbsp;
           <input
-            // required
+            required
             value={state}
             name="state"
             className="form-inp"
@@ -89,7 +102,7 @@ export const UserProfile = () => {
           />
           &nbsp;
           <input
-            // required
+            required
             value={countaryName}
             className="form-inp"
             autoComplete="off"
@@ -108,7 +121,7 @@ export const UserProfile = () => {
           />
           &nbsp;
           <input
-            // required
+            required
             value={postalCode}
             className="form-inp"
             autoComplete="off"
@@ -127,33 +140,50 @@ export const UserProfile = () => {
           />
           &nbsp;
           <input
-            // required
+            required
             value={mobileNumber}
             className="form-inp"
             autoComplete="off"
             id="mobileNumber"
             name="mobileNumber"
             placeholder="Enter Mobile Number"
-            onChange={(event) =>
+            onChange={(event) => {
               setProductDispatch({
                 type: "SET_USER_ADDRESS",
                 payload: {
                   name: event.target.name,
                   value: event.target.value,
                 },
-              })
-            }
+              });
+            }}
           />
-          <button type="submit" className="login-btns">
-            Save New Address
+          <button
+            type="submit"
+            className="login-btns"
+            onClick={() => {
+              isEdit &&
+                toast.success("ADDRESS UPDATED", {
+                  className: "toast-styling",
+                  autoClose: 1000,
+                });
+
+              setIsEdit(false);
+            }}
+          >
+            <strong>{isEdit ? "EDIT ADDRESS" : "SAVE ADDRESS"} </strong>
+          </button>
+          <button
+            className="login-btns"
+            type="button"
+            onClick={() => setProductDispatch({ type: "SET_DUMMY_ADDRESS" })}
+          >
+            <strong>FILL WITH DUMMY DATA</strong>
           </button>
         </form>
 
         <div className="left-address-case">
-          <SavedAddress />
+          <SavedAddress isEdit={isEdit} setIsEdit={setIsEdit} />
         </div>
-
-
       </div>
     </>
   );

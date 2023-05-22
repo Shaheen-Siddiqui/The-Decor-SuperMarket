@@ -91,6 +91,18 @@ export const productReducer = (productState, { type, payload }) => {
           mobileNumber: "",
         },
       };
+    case "SET_DUMMY_ADDRESS":
+      return{
+        ...productState,
+        userAddress:{
+          hoseNumber: "E-170/ Okhla industerial area",
+          city: "New Delhi",
+          state: "Delhi",
+          countaryName: "India/Bharat desh",
+          postalCode: "110020",
+          mobileNumber: "7624874172",
+        }
+      }
     case "DELETE_ADDRESS":
       return {
         ...productState,
@@ -98,6 +110,19 @@ export const productReducer = (productState, { type, payload }) => {
           (item, id) => id !== payload
         ),
       };
+
+    case "EDIT_ADDRESS":
+      return {
+        ...productState,
+        // obtainUserAddress: productState.obtainUserAddress.filter(
+        //   (_, id) => id !== payload
+        // ),
+        userAddress: productState.obtainUserAddress.find(
+          (_, id) => id === payload
+        ),
+      
+      };
+
     default:
       throw new Error(`invelid type ${type} check productReducer`);
   }

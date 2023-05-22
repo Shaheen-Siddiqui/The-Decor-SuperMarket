@@ -2,12 +2,12 @@ import "./UserProfile.css";
 import { useContext } from "react";
 import { changeOfAddress } from "../../assets";
 import { productContext } from "../../hooks/context/productsContext";
+import { toast } from "react-toastify";
 
-export const SavedAddress = () => {
+export const SavedAddress = ({ setIsEdit, isEdit }) => {
   const { obtainUserAddress, setProductDispatch } = useContext(productContext);
   return (
     <>
-   
       <u>
         <h2>You can add multiple addresses</h2>
       </u>
@@ -63,16 +63,29 @@ export const SavedAddress = () => {
                   <div className="delete-edit-case">
                     <button
                       className="delete-edit-btn delete-address"
-                      onClick={() =>
+                      onClick={() => {
                         setProductDispatch({
                           type: "DELETE_ADDRESS",
                           payload: index,
-                        })
-                      }
+                        });
+                        toast.error("Address Deleted", {
+                          className: "toast-styling",
+                          autoClose: 1000,
+                        });
+                      }}
                     >
                       Delete
                     </button>
-                    <button className="delete-edit-btn edit-address">
+                    <button
+                      className="delete-edit-btn edit-address"
+                      onClick={() => {
+                        setProductDispatch({
+                          type: "EDIT_ADDRESS",
+                          payload: index,
+                        });
+                        setIsEdit(true);
+                      }}
+                    >
                       Edit
                     </button>
                   </div>
