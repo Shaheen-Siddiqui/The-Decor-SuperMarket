@@ -23,10 +23,9 @@ export const ProductListingCategoryWise = () => {
   const { filteredArray,search, products, filterProductByPriceRange, filterBySearch, productLoding } = useContext(filterContext);
   const onlyMatchCategories = products.filter(({ category }) =>[categoriesName].some((item) => category == item));
  
-console.log(filteredArray);
   return (
     <>
-      <SideBar />
+      {/* <SideBar /> */}
       <center>
         <h2>Total product: {filterProductByPriceRange.length} </h2>
       </center>

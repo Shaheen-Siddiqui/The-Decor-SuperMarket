@@ -31,16 +31,6 @@
     text-transform: uppercase;
 }
 
-.toast-styling {
-    color: black;
-    font-size: 1.3rem;
-    font-weight: bold;
-    text-align: center;
-    border-top: 3px solid var(--logo-color);
-    border-left: 3px solid var(--logo-color);
-    border-right: 3px solid var(--logo-color);
-
-}
 
 .rating-stuff {
     display: flex;

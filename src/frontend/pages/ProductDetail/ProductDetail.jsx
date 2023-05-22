@@ -13,7 +13,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 //internal inports
-import { image1 } from "../../assets";
+import '../Authentication/authentication.css'
+import '../ProductListing/ProductListing.css'
+import '../Home/Home.css'
 import { productContext } from "../../hooks/context/productsContext";
 import { useParams } from "react-router-dom";
 import axios from "axios";

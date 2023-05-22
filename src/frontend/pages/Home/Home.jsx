@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //internal imports
 import "./Home.css";
@@ -16,7 +16,35 @@ import { filterContext } from "../../hooks/context/filterContext";
 
 export const Home = () => {
   const { categoriesData, setfilterDispatch } = useContext(filterContext);
+  const navigate = useNavigate();
 
+  const setCategoryNavigate = (categoryName) => {
+    if (categoryName === "Bed") {
+      setfilterDispatch({
+        type: "FILTER_BEDS",
+        payload: true,
+      });
+    }
+    if (categoryName === "Luxury set") {
+      setfilterDispatch({
+        type: "FILTER_LUXURY_SET",
+        payload: true,
+      });
+    }
+    if (categoryName === "Dressing Table") {
+      setfilterDispatch({
+        type: "FILTER_DRESSING_TABLES",
+        payload: true,
+      });
+    }
+    if (categoryName === "Sofa") {
+      setfilterDispatch({
+        type: "FILTER_SOFAS",
+        payload: true,
+      });
+    }
+    navigate("/product-listing");
+  };
   return (
     <>
       <div className="hero-img-case">
@@ -32,20 +60,17 @@ export const Home = () => {
 
       {/*  */}
       <h1 className="category-desc">Top Categories of the year</h1>
-
       <div className="home-categories">
         {categoriesData.map(({ categoryImage, categoryName }) => {
           return (
-            <Link to={`/product-listing/${categoryName}`} key={categoryName}>
-              <figure>
-                <img
-                  className="uniq-img"
-                  src={categoryImage}
-                  alt={categoryName}
-                />
-                <h2>{categoryName}</h2>
-              </figure>
-            </Link>
+            <figure onClick={() => setCategoryNavigate(categoryName)}>
+              <img
+                className="uniq-img"
+                src={categoryImage}
+                alt={categoryName}
+              />
+              <h2>{categoryName}</h2>
+            </figure>
           );
         })}
       </div>
@@ -63,18 +88,5 @@ export const Home = () => {
   );
 };
 
-// onClick={() =>
-//   setfilterDispatch({
-//     type:
-//       categoryName == "Bed"
-//         ? "FILTER_BEDS"
-//         : categoryName == "Dressing Table"
-//         ? "FILTER_DRESSING_TABLES"
-//         : categoryName == "Sofa"
-//         ? "FILTER_SOFAS"
-//         : categoryName == "Luxury set"
-//         ? "FILTER_LUXURY_SET"
-//         : "SEARCH_PRODUCTS",
-//   })
-// }
 export { Home as default };
+
