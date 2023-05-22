@@ -1,0 +1,70 @@
+#address-form-case {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-top: -1rem;
+    /* gap: 5rem */
+}
+
+#address-form {
+    width: 45rem;
+}
+
+.left-address-case {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-right: 1rem groove var(--logo-color);
+    border-left: 1rem groove var(--logo-color);
+    border-bottom: 4rem groove var(--logo-color);
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1rem 4rem 1rem 5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 50rem;
+    height: 55rem;
+}
+
+.address-case {
+    height: fit-content;
+    margin: 2rem;
+    padding: 1rem 1rem;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    width: 40rem;
+    border-radius: var(--border-radius);
+}
+
+.address-placehilder {
+    text-align: left;
+}
+
+.address-value {
+    text-align: left;
+}
+
+.delete-edit-case {
+    margin-top: -1rem;
+
+}
+
+.delete-edit-btn {
+    padding: 0.5rem 2rem;
+    margin: 0 3rem;
+    border: 2px groove var(--backgrounds);
+    cursor: pointer;
+
+}
+
+.delete-address {
+    color: red;
+    font-weight: bold;
+}
+
+.edit-address {
+    color: blue;
+    font-weight: bold;
+}

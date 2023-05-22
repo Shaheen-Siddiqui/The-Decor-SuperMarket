@@ -34,3 +34,15 @@ h2 {
 body{
     height: 70vh;
 }
+
+
+.toast-styling {
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    border-top: 3px solid var(--logo-color);
+    border-left: 3px solid var(--logo-color);
+    border-right: 3px solid var(--logo-color);
+
+}

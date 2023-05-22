@@ -48,21 +48,56 @@ export const productReducer = (productState, { type, payload }) => {
       return {
         ...productState,
         cart: productState.cart.map((item) =>
-          item._id == payload._id
-            ? { ...item, quantity: item.quantity++ }
+          item._id === payload._id
+            ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
       };
     case "PRODUCT_QUANTITY_DECREMENT":
       return {
         ...productState,
-        cart: productState.cart.map((item) =>
-          item._id === payload._id
-            ? { ...item, quantity: item.quantity-- }
-            :  item
-        ).filter(({quantity})=> quantity!==0)
-      };                       
+        cart: productState.cart
+          .map((item) =>
+            item._id === payload._id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+          .filter(({ quantity }) => quantity !== 0),
+      };
 
+    case "SET_USER_ADDRESS":
+      const { name, value } = payload;
+      return {
+        ...productState,
+        userAddress: {
+          ...productState.userAddress,
+          [name]: value,
+        },
+      };
+
+    case "ADDRESS_FORM_SUBMIT":
+      return {
+        ...productState,
+        obtainUserAddress: [
+          ...productState.obtainUserAddress,
+          productState.userAddress,
+        ],
+        userAddress: {
+          hoseNumber: "",
+          city: "",
+          state: "",
+          countaryName: "",
+          postalCode: "",
+          mobileNumber: "",
+        },
+      };
+    case "DELETE_ADDRESS":
+      return {
+        ...productState,
+        obtainUserAddress: productState.obtainUserAddress.filter(
+          (item, id) => id !== payload
+        ),
+      };
     default:
       throw new Error(`invelid type ${type} check productReducer`);
   }

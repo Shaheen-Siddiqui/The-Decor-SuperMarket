@@ -12,6 +12,7 @@ import nilKamal from "./nikamal-brand.jpg";
 import woodenStreetBrand from "./woodenStreet-brand.avif";
 import empatyCart from './empaty-cart.jpg'
 import emaptyWishList from './emapty-wishList.jpg'
+import changeOfAddress from './change-of-address-hand-cart.webp'
 
 export {
   purple,
@@ -26,5 +27,6 @@ export {
   image5,
   image6,
   empatyCart,
-  emaptyWishList
+  emaptyWishList,
+  changeOfAddress
 };

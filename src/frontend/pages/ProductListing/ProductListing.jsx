@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 
 //internal imports
 import "./ProductListing.css";
+import '../../components/Header/Header.css'
+import '../Authentication/authentication.css'
 import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
 import { SideBar } from "../../components/SideBar/SideBar";
@@ -37,6 +39,7 @@ export const ProductListing = () => {
   return (
     <>
       <SideBar />
+
       <center>
         <h2>Total product: {filterProductByPriceRange.length} </h2>
       </center>
@@ -75,11 +78,11 @@ export const ProductListing = () => {
                   return (
                     <div className="product" key={_id}>
                       <a href={`/product-detail/${_id}`}>
-                        {/* <img
+                        <img
                           className="product-img"
                           src={productImg}
                           alt="a new collections"
-                        /> */}
+                        />
                       </a>
 
                       <div className="product-cantent">

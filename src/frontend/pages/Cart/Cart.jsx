@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 //internal imports
 import "./Cart.css";
+import '../../pages/Home/Home.css'
 import '../Authentication/authentication.css'
 import { empatyCart } from "../../assets";
 import { useContext, useEffect, useState } from "react";
@@ -25,6 +26,7 @@ export const Cart = () => {
 
   const discounts = (priceOfProductsWithQuantity * 45) / 100;
   const totalPrice = priceOfProductsWithQuantity - discounts;
+  console.log(cart,'[]')
 
   return (
     <div>

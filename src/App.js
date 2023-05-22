@@ -24,6 +24,9 @@ const SignUp = lazy(() => import("./frontend/pages/Authentication/Signup"));
 const ProductListingCategoryWise = lazy(() =>
   import("./frontend/pages/ProductDetail/ProductListingCategoryWise")
 );
+const UserProfile = lazy(() =>
+  import("./frontend/pages/UserProfile/UserProfile")
+);
 
 function App() {
   return (
@@ -58,7 +61,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
 
-            {/* PRIVATE PAGES  */}
+            {/* *******PRIVATE PAGES*******   */}
             <Route
               path="/cart"
               element={
@@ -75,7 +78,15 @@ function App() {
                 </RequireAuth>
               }
             />
-            {/*  -------------*/}
+            <Route
+              path="user-profile"
+              element={
+                <RequireAuth>
+                  <UserProfile />
+                </RequireAuth>
+              }
+            />
+            {/*  -------------------------*/}
 
             <Route path="/login" element={<LogIn />} />
             <Route path="/product-listing" element={<ProductListing />} />
@@ -89,6 +100,8 @@ function App() {
               path="/product-listing/:categoriesName"
               element={<ProductListingCategoryWise />}
             />
+
+            {/* '404.' pending */}
           </Routes>
         </Suspense>
       </div>

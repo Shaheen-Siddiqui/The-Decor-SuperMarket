@@ -75,7 +75,7 @@ export const SideBar = () => {
               onChange={(event) =>
                 setfilterDispatch({
                   type: "FILTER_BEDS",
-                  payload: !event.target.checked,
+                  payload: event.target.checked,
                 })
               }
             />{" "}
@@ -90,7 +90,7 @@ export const SideBar = () => {
               onChange={(event) =>
                 setfilterDispatch({
                   type: "FILTER_DRESSING_TABLES",
-                  payload: !event.target.checked,
+                  payload: event.target.checked,
                 })
               }
             />
@@ -105,7 +105,7 @@ export const SideBar = () => {
               onChange={(event) =>
                 setfilterDispatch({
                   type: "FILTER_SOFAS",
-                  payload: !event.target.checked,
+                  payload: event.target.checked,
                 })
               }
             />
@@ -120,7 +120,7 @@ export const SideBar = () => {
               onChange={(event) =>
                 setfilterDispatch({
                   type: "FILTER_LUXURY_SET",
-                  payload: !event.target.checked,
+                  payload: event.target.checked,
                 })
               }
             />
