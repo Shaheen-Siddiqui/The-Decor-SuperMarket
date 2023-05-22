@@ -21,9 +21,7 @@ const ProductDetail = lazy(() =>
 const WishList = lazy(() => import("./frontend/pages/WishList/WishList"));
 const LogIn = lazy(() => import("./frontend/pages/Authentication/Login"));
 const SignUp = lazy(() => import("./frontend/pages/Authentication/Signup"));
-const ProductListingCategoryWise = lazy(() =>
-  import("./frontend/pages/ProductDetail/ProductListingCategoryWise")
-);
+
 const UserProfile = lazy(() =>
   import("./frontend/pages/UserProfile/UserProfile")
 );
@@ -96,12 +94,8 @@ function App() {
               element={<ProductDetail />}
             />
             <Route path="/mock" element={<Mockman />} />
-            <Route
-              path="/product-listing/:categoriesName"
-              element={<ProductListingCategoryWise />}
-            />
 
-            {/* '404.' pending */}
+            {/* '404.' pending */}||{/* '404.' pending */}
           </Routes>
         </Suspense>
       </div>
