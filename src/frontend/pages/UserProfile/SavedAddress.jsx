@@ -4,7 +4,7 @@ import { changeOfAddress } from "../../assets";
 import { productContext } from "../../hooks/context/productsContext";
 import { toast } from "react-toastify";
 
-export const SavedAddress = ({ setIsEdit, isEdit }) => {
+export const SavedAddress = ({ setIsEdit }) => {
   const { obtainUserAddress, setProductDispatch } = useContext(productContext);
   return (
     <>
@@ -18,6 +18,7 @@ export const SavedAddress = ({ setIsEdit, isEdit }) => {
           {obtainUserAddress.map(
             (
               {
+                userName,
                 hoseNumber,
                 city,
                 state,
@@ -31,6 +32,9 @@ export const SavedAddress = ({ setIsEdit, isEdit }) => {
                 <div key={index}>
                   <div className="address-case">
                     <div className="address-placehilder">
+                      <p>
+                        <strong>user Name: </strong>
+                      </p>
                       <p>
                         <strong>House Number: </strong>
                       </p>
@@ -52,6 +56,7 @@ export const SavedAddress = ({ setIsEdit, isEdit }) => {
                     </div>
 
                     <div className="address-value">
+                      <p>{userName}</p>
                       <p> {hoseNumber} </p>
                       <p> {state}</p>
                       <p> {city}</p>

@@ -9,7 +9,7 @@ export async function obtainSignedUpUserData(
   isPasswordMatch,
   setAuthDispatch,
   navigate,
-  RedirecToLocation
+  RedirecToLocation,
 ) {
   if (isPasswordMatch()) {
     try {

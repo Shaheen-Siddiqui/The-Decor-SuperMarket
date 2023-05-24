@@ -9,25 +9,27 @@ import { toast } from "react-toastify";
 
 //internal imports
 import "./Cart.css";
-import '../../pages/Home/Home.css'
-import '../Authentication/authentication.css'
+import "../../pages/Home/Home.css";
+import "../Authentication/authentication.css";
 import { empatyCart } from "../../assets";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { productContext } from "../../hooks/context/productsContext";
 
 export const Cart = () => {
-  const { cart, setProductDispatch, isAddedIntoWishList } =
-    useContext(productContext);
-
-  const priceOfProductsWithQuantity = cart.reduce(
-    (acc, { prePrice, quantity }) => (acc = acc + Number(prePrice)) * quantity,
-    0
-  );
-
-  const discounts = (priceOfProductsWithQuantity * 45) / 100;
-  const totalPrice = priceOfProductsWithQuantity - discounts;
-  console.log(cart,'[]')
-
+  const [isCoupanApplied, setIsCoupanApplied] = useState(false);
+  const {
+    cart,
+    setProductDispatch,
+    isAddedIntoWishList,
+    priceOfProductsWithQuantity,
+    discounts,
+    totalPrice,
+    coupanApplyOnTotalAmount,
+  } = useContext(productContext);
+  const invokeOnCoupanApply = () => {
+    setIsCoupanApplied(!isCoupanApplied);
+    setProductDispatch({ type: "COUPAN_APPLIED", payload: totalPrice - 5 });
+  };
   return (
     <div>
       <center>
@@ -71,7 +73,7 @@ export const Cart = () => {
                   <div className="card-rightside">
                     <h2 className="card-heading">{category}</h2>
                     <div className="product-price">
-                      <h2>₹ {price}</h2>{" "}
+                      <h2>₹ {price}</h2>
                       <p className="card-pre-price">₹ {prePrice}</p>
                     </div>
                     <div className="product-price">
@@ -83,14 +85,15 @@ export const Cart = () => {
                         icon={faSquareMinus}
                         size="xl"
                         className="qty-logo"
-                        onClick={() =>
-                          {setProductDispatch({
+                        onClick={() => {
+                          setProductDispatch({
                             type: "PRODUCT_QUANTITY_DECREMENT",
                             payload: item,
-                          })
-                          toast.error("You Have Decreased Quantity",{className:"toast-styling"})
-                        }
-                        }
+                          });
+                          toast.error("You Have Decreased Quantity", {
+                            className: "toast-styling",
+                          });
+                        }}
                       />
                       <h4>{quantity}</h4>
                       <FontAwesomeIcon
@@ -156,7 +159,13 @@ export const Cart = () => {
                 <FontAwesomeIcon icon={faTag} size="sm" />
                 Have A Coupon?
               </p>
-              <button className="hrd-login-btn">Apply</button>
+              <button
+                onClick={invokeOnCoupanApply}
+                className="hrd-login-btn"
+                id="unalowed-btn"
+              >
+                {isCoupanApplied ? "Applied" : "Apply"}
+              </button>
             </div>
             <h2 className="price-details">Price details</h2>
             <div className="price-string-number">
@@ -170,17 +179,21 @@ export const Cart = () => {
                 <p>₹ {priceOfProductsWithQuantity}</p>
                 <p>-₹ {discounts}</p>
                 <p>FREE</p>
-                <p>₹ 30%</p>
+                <p>₹ 5%</p>
               </div>
             </div>
             <div className="total-amount-case">
               <h2>Total Amount</h2>
-              <h2>₹ {totalPrice}</h2>
+              <h2>
+                ₹{isCoupanApplied ? coupanApplyOnTotalAmount : totalPrice}
+              </h2>
             </div>
             <p className="discount-price">
               you will save ₹ {discounts} on this order
             </p>
-            <button className="login-btns checkout-btn">Checkout</button>
+            <Link to="/checkout">
+              <button className="login-btns checkout-btn">Checkout</button>
+            </Link>
           </div>
         </section>
       )}
@@ -188,4 +201,4 @@ export const Cart = () => {
   );
 };
 
-export {Cart as default}
+export { Cart as default };

@@ -66,8 +66,9 @@
 }
 
 .emapty-cart-img {
-    height: 40rem;
+    height: 30rem;
     margin-top: 3rem;
+    margin: 2rem 2rem 10rem 2rem;
 }
 
 .cart-case {
@@ -84,8 +85,8 @@
 
 .card-price-detail {
     display: flex;
-    top:20%;
-    gap:1.5rem;
+    top: 20%;
+    gap: 1.5rem;
     flex-direction: column;
     box-shadow: 0 0 5px 3px rgba(158, 150, 150, 0.7);
     padding: 3.5rem;
@@ -117,6 +118,7 @@
     padding: 1rem 0.5rem;
     gap: 15rem
 }
+
 
 .discount-price {
     color: #12ad12;

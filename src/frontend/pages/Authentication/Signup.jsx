@@ -1,13 +1,14 @@
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // internal imports
 import "./authentication.css";
-import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { obtainSignedUpUserData } from "./authApiCall/signUpApi";
 import { authContext } from "../../hooks/context/authContext";
+import { productContext } from "../../hooks/context/productsContext";
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ export const SignUp = () => {
   const { setAuthDispatch } = useContext(authContext);
 
   const [userInformation, setUserInformation] = useState({
-    fullName: "",
     email: "",
+    fullName: "",
     password: "",
     confirmPassword: "",
   });
@@ -45,7 +46,7 @@ export const SignUp = () => {
       isPasswordMatch,
       setAuthDispatch,
       navigate,
-      RedirecToLocation
+      RedirecToLocation,
     );
   };
 
