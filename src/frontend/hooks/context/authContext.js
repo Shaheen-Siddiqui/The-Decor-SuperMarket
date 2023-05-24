@@ -9,7 +9,7 @@ export const AuthContextProveder = ({ children }) => {
     token: localStorage.getItem("token") || "",
   });
 
-  
+
   return (
     <authContext.Provider value={{ setAuthDispatch,token,user }}>
       {children}

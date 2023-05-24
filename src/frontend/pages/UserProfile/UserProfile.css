@@ -3,16 +3,17 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: flex-end;
-    margin-top: -2rem;
+    /* height: fit-content; */
     /* border:solid; */
-    height: fit-content;
+
+    height: 60rem;
 
 }
 
 #address-form {
     width: 45rem;
-    padding: 3rem 3rem;
-    
+    padding: 3rem 3rem 1.5rem 3rem;
+    margin: 0;
 }
 
 .left-address-case {
@@ -28,7 +29,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     width: 50rem;
-    height: 57.5rem;
+    height: 61rem;
 }
 
 .address-case {

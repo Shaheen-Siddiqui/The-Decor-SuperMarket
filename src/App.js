@@ -1,11 +1,11 @@
 // External packages
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RotatingLines } from "react-loader-spinner";
 
-// lazy loads for optimised the code performance
+// lazy loads for optimised the code performance //
 import "./App.css";
 import { RequireAuth } from "./RequireAuth";
 import Mockman from "mockman-js";
@@ -21,12 +21,14 @@ const ProductDetail = lazy(() =>
 const WishList = lazy(() => import("./frontend/pages/WishList/WishList"));
 const LogIn = lazy(() => import("./frontend/pages/Authentication/Login"));
 const SignUp = lazy(() => import("./frontend/pages/Authentication/Signup"));
-
 const UserProfile = lazy(() =>
   import("./frontend/pages/UserProfile/UserProfile")
 );
+const Checkout = lazy(() => import("./frontend/pages/Checkout/Checkout"));
 
 function App() {
+  const [bars, setBars] = useState(false);
+
   return (
     <div className="App">
       <ToastContainer
@@ -42,9 +44,9 @@ function App() {
         theme="light"
       />
       <Suspense fallback={<h1>Loading...</h1>}>
-        <Header />
+        <Header bars={bars} setBars={setBars} />
       </Suspense>
-      <div style={{ marginTop: "10rem" }}>
+      <div style={{ marginTop: bars ? "2rem" : "10rem" }}>
         <Suspense
           fallback={
             <RotatingLines
@@ -58,7 +60,6 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-
             {/* *******PRIVATE PAGES*******   */}
             <Route
               path="/cart"
@@ -84,8 +85,7 @@ function App() {
                 </RequireAuth>
               }
             />
-            {/*  -------------------------*/}
-
+            {/********************************/}
             <Route path="/login" element={<LogIn />} />
             <Route path="/product-listing" element={<ProductListing />} />
             <Route path="/sign-up" element={<SignUp />} />
@@ -94,8 +94,8 @@ function App() {
               element={<ProductDetail />}
             />
             <Route path="/mock" element={<Mockman />} />
-
-            {/* '404.' pending */}||{/* '404.' pending */}||{/* '404.' pending */}
+            <Route path="/checkout" element={<Checkout />} />
+            {/* '404.' pending */}||{/* '404.' pending */}
           </Routes>
         </Suspense>
       </div>

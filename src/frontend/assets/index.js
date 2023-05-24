@@ -10,9 +10,9 @@ import godregBrand from "./godreg-brand.jpg";
 import hometownBrand from "./hometown-brand.avif";
 import nilKamal from "./nikamal-brand.jpg";
 import woodenStreetBrand from "./woodenStreet-brand.avif";
-import empatyCart from './empaty-cart.jpg'
+import empatyCart from './empty-cart.gif'
 import emaptyWishList from './emapty-wishList.jpg'
-import changeOfAddress from './change-of-address-hand-cart.webp'
+import changeOfAddress from './change-of-addresses.gif'
 
 export {
   purple,

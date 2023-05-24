@@ -13,7 +13,7 @@ export async function obtainLoggedInUserData(
     const Response = await axios.post("/api/auth/login", { email, password });
     if (Response.status == 200) {
       localStorage.setItem("user", JSON.stringify(Response.data.foundUser));
-      localStorage.setItem("token", JSON.stringify(Response.data.encodedToken));
+      localStorage.setItem("token", Response.data.encodedToken);
       setAuthDispatch({
         type: "USER_LOGIN",
         payload: {

@@ -1,7 +1,7 @@
+import "./Header.css";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 
-import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBlenderPhone,
@@ -16,8 +16,21 @@ import { productContext } from "../../hooks/context/productsContext";
 import { authContext } from "../../hooks/context/authContext";
 import { toast } from "react-toastify";
 
-export const Header = () => {
-  const [bars, setBars] = useState(false);
+export const Header = ({ bars, setBars }) => {
+  const headerNavigate = [
+    {
+      to: "/wish-list",
+      icon: faHeart,
+    },
+    {
+      to: "/cart",
+      icon: faCartArrowDown,
+    },
+    {
+      to: "/user-profile",
+      icon: faAddressCard,
+    },
+  ];
   const [isUserCaseOpen, setIsUserCaseOpen] = useState(false);
   const { setfilterDispatch, search } = useContext(filterContext);
   const { cart, wishList } = useContext(productContext);
@@ -32,6 +45,7 @@ export const Header = () => {
       className: "toast-styling",
     });
   };
+
   return (
     <>
       <div>
@@ -106,31 +120,30 @@ export const Header = () => {
         </div>
 
         {bars ? (
-          <div className="newappearance">
-            <div className="rwd-logo">
-              <h3>
-                Appliance <FontAwesomeIcon icon={faBlenderPhone} />
-              </h3>
-            </div>
+          <div className="rwd-hdr-right-side">
+            <Link to="/" onClick={() => setBars(false)}>
+              <h5>Home</h5>
+            </Link>
 
-            <div className="rwd-hdr-right-side">
-              <h2>Explore</h2>
-              <i>
-                <FontAwesomeIcon icon={faHeart} size="2xl" />{" "}
-                <small>wishlist</small>
-              </i>
+            <Link to="/product-listing" onClick={() => setBars(false)}>
+              <h5>Explore</h5>
+            </Link>
 
-              <i>
-                <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />{" "}
-                <small>cart</small>
-              </i>
-              <i>
-                <FontAwesomeIcon icon={faAddressCard} size="2xl" />{" "}
-                <small>details</small>
-              </i>
+            {headerNavigate.map(({ to, icon }, index) => {
+              return (
+                <Link to={to} onClick={() => setBars(false)} key={index}>
+                  <i>
+                    <FontAwesomeIcon icon={icon} />
+                  </i>
+                </Link>
+              );
+            })}
 
-              <button className="rwd-login-btn">Login</button>
-            </div>
+            <Link to="/login" onClick={() => setBars(false)}>
+              <button className="rwd-login-btn" onClick={userLogoutHandler}>
+                {token ? "Logout" : "Login"}
+              </button>
+            </Link>
           </div>
         ) : (
           ""

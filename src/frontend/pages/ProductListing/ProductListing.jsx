@@ -1,4 +1,4 @@
-import { useContext, lazy, Suspense } from "react";
+import { useContext } from "react";
 import {
   faStar,
   faCartPlus,
@@ -14,8 +14,8 @@ import { toast } from "react-toastify";
 
 //internal imports
 import "./ProductListing.css";
-import '../../components/Header/Header.css'
-import '../Authentication/authentication.css'
+import "../../components/Header/Header.css";
+import "../Authentication/authentication.css";
 import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
 import { SideBar } from "../../components/SideBar/SideBar";
@@ -37,12 +37,13 @@ export const ProductListing = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <SideBar />
 
       <center>
         <h2>Total product: {filterProductByPriceRange.length} </h2>
       </center>
+
       <div className="all-products-page">
         {productLoding ? (
           <h1 style={{ marginLeft: "40rem" }}>
@@ -167,7 +168,7 @@ export const ProductListing = () => {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

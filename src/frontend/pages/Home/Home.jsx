@@ -13,9 +13,11 @@ import {
   woodenStreetBrand,
 } from "../../assets";
 import { filterContext } from "../../hooks/context/filterContext";
+import { productContext } from "../../hooks/context/productsContext";
 
 export const Home = () => {
   const { categoriesData, setfilterDispatch } = useContext(filterContext);
+  const {getCartItem}=useContext(productContext)
   const navigate = useNavigate();
 
   const setCategoryNavigate = (categoryName) => {
@@ -48,10 +50,10 @@ export const Home = () => {
   return (
     <>
       <div className="hero-img-case">
-        <img src={purple} alt="hero-image" className="hero-image" />
+        <img src={purple} alt="landing-hero" className="hero-image" />
         <center>
           <Link to="/product-listing">
-            <button className="button">
+            <button className="button" >
               <span>Shop Now!! </span>
             </button>
           </Link>
@@ -61,9 +63,12 @@ export const Home = () => {
       {/*  */}
       <h1 className="category-desc">Top Categories of the year</h1>
       <div className="home-categories">
-        {categoriesData.map(({ categoryImage, categoryName }) => {
+        {categoriesData.map(({ categoryImage, categoryName }, index) => {
           return (
-            <figure onClick={() => setCategoryNavigate(categoryName)}>
+            <figure
+              onClick={() => setCategoryNavigate(categoryName)}
+              key={index}
+            >
               <img
                 className="uniq-img"
                 src={categoryImage}
@@ -89,4 +94,3 @@ export const Home = () => {
 };
 
 export { Home as default };
-

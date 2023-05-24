@@ -17,6 +17,7 @@ export const UserProfile = () => {
       countaryName,
       postalCode,
       mobileNumber,
+      userName
     },
     setProductDispatch,
   } = useContext(productContext);
@@ -24,6 +25,7 @@ export const UserProfile = () => {
   const addressHandler = (event) => {
     event.preventDefault();
     if (
+      userName &&
       hoseNumber &&
       city &&
       state &&
@@ -46,9 +48,28 @@ export const UserProfile = () => {
           <h1 className="form-text">Manage Address</h1>&nbsp;
           <input
             required
+            value={userName}
+            autoComplete="off"
+            type="text"
+            id="userName"
+            name="userName"
+            className="form-inp"
+            placeholder="Enter Your name"
+            onChange={(event) =>
+              setProductDispatch({
+                type: "SET_USER_ADDRESS",
+                payload: {
+                  name: event.target.name,
+                  value: event.target.value,
+                },
+              })
+            }
+          />
+          &nbsp;
+          <input
+            required
             value={hoseNumber}
             autoComplete="off"
-            // required
             type="text"
             id="houseNumber"
             name="hoseNumber"
@@ -71,7 +92,6 @@ export const UserProfile = () => {
             className="form-inp"
             type="city"
             id="city"
-            // required
             name="city"
             placeholder="Enter City"
             onChange={(event) =>
@@ -177,7 +197,7 @@ export const UserProfile = () => {
             type="button"
             onClick={() => setProductDispatch({ type: "SET_DUMMY_ADDRESS" })}
           >
-            <strong>FILL WITH DUMMY DATA</strong>
+            <strong>FILL WITH DUMMY ADDRESS</strong>
           </button>
         </form>
 
