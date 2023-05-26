@@ -1,5 +1,5 @@
 # Project Title
---Appliance-Outlet--
+--The Decor-SuperMarket--
 
 ## Demo link
 access my site at -------
