@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -19,6 +19,7 @@ import "../Authentication/authentication.css";
 import { filterContext } from "../../hooks/context/filterContext";
 import { productContext } from "../../hooks/context/productsContext";
 import { SideBar } from "../../components/SideBar/SideBar";
+import { authContext } from "../../hooks/context/authContext";
 
 export const ProductListing = () => {
   const {
@@ -29,8 +30,15 @@ export const ProductListing = () => {
     productLoding,
   } = useContext(filterContext);
 
-  const { setProductDispatch, isAddedIntoCart, isAddedIntoWishList } =
-    useContext(productContext);
+  const {
+    setProductDispatch,
+    isAddedIntoCart,
+    isAddedIntoWishList,
+    obtainAddItemToCartApi,
+    obtainAddItemToWishListApi,
+  } = useContext(productContext);
+  const { token } = useContext(authContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
@@ -115,13 +123,9 @@ export const ProductListing = () => {
                               <button
                                 className="login-btns"
                                 onClick={() => {
-                                  setProductDispatch({
-                                    type: "ADD_ITEM_TO_CART",
-                                    payload: item,
-                                  });
-                                  toast.success("Added To Cart!", {
-                                    className: "toast-styling",
-                                  });
+                                  token
+                                    ? obtainAddItemToCartApi(item)
+                                    : navigate("/login");
                                 }}
                               >
                                 <FontAwesomeIcon icon={faCartPlus} /> add to
@@ -147,15 +151,7 @@ export const ProductListing = () => {
                             <FontAwesomeIcon
                               icon={faHeart}
                               className="wislist-icon"
-                              onClick={() => {
-                                setProductDispatch({
-                                  type: "ADD_ITEM_TO_WISHLIST",
-                                  payload: item,
-                                });
-                                toast.success("Added Item To WishList", {
-                                  className: "toast-styling",
-                                });
-                              }}
+                              onClick={() => obtainAddItemToWishListApi(item)}
                             />
                           )}
                         </div>

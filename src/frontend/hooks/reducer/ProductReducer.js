@@ -3,20 +3,13 @@ export const productReducer = (productState, { type, payload }) => {
     case "ADD_ITEM_TO_CART":
       return {
         ...productState,
-        cart:
-          productState.cart.find((item) => item._id === payload._id) !==
-          undefined
-            ? productState.cart
-            : [...productState.cart, payload],
+        cart: payload,
       };
     case "ADD_ITEM_TO_WISHLIST":
       return {
         ...productState,
-        wishList:
-          productState.wishList.find((item) => item._id === payload._id) !==
-          undefined
-            ? productState.wishList.filter((item) => item._id !== payload._id)
-            : [...productState.wishList, payload],
+        wishList: payload,
+       
       };
     case "MOVE_ITEM_TO_CART":
       return {
@@ -130,12 +123,17 @@ export const productReducer = (productState, { type, payload }) => {
           (_, id) => id === payload
         ),
       };
-     case "COUPAN_APPLIED":
-      return{
+    case "COUPAN_APPLIED":
+      return {
         ...productState,
-       coupanApplyOnTotalAmount: payload
-      }
-
+        coupanApplyOnTotalAmount: payload,
+      };
+    case "USER_LOGGED_OUT":
+      return {
+        ...productState,
+        cart: [],
+        wishList:[]
+      };
     default:
       throw new Error(`invelid type ${type} check productReducer`);
   }

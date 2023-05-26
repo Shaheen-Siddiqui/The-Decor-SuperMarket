@@ -18,8 +18,8 @@ export const FilterContextProvider = ({ children }) => {
     sofa: false,
     beds: false,
     loading: false,
-    priceRange: 1200,
     luxurySets: false,
+    priceRange: 1200,
     dressingTables: false,
   });
   const {

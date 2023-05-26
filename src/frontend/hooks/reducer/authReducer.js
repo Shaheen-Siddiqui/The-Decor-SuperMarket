@@ -1,4 +1,7 @@
+import { useContext } from "react";
+
 export const authReducer = (authState, { type, payload }) => {
+
   switch (type) {
     case "USER_SIGNUP":
       return {
@@ -18,6 +21,7 @@ export const authReducer = (authState, { type, payload }) => {
         user: {},
         token: "",
       };
+   
 
     default:
       throw new Error(`invelid action type ${type} check authReducer`);
