@@ -33,11 +33,14 @@ export const Header = ({ bars, setBars }) => {
   ];
   const [isUserCaseOpen, setIsUserCaseOpen] = useState(false);
   const { setfilterDispatch, search } = useContext(filterContext);
-  const { cart, wishList } = useContext(productContext);
+  const { cart, wishList, setProductDispatch, getCartItem } =
+    useContext(productContext);
   const { token, user, setAuthDispatch } = useContext(authContext);
 
   const userLogoutHandler = () => {
     setAuthDispatch({ type: "USER_LOGOUT" });
+    setProductDispatch({ type: "USER_LOGGED_OUT" });
+
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     toast.info("logged out successfully", {
@@ -140,9 +143,15 @@ export const Header = ({ bars, setBars }) => {
             })}
 
             <Link to="/login" onClick={() => setBars(false)}>
-              <button className="rwd-login-btn" onClick={userLogoutHandler}>
-                {token ? "Logout" : "Login"}
-              </button>
+              {token ? (
+                <button className="rwd-login-btn" onClick={userLogoutHandler}>
+                  Log out
+                </button>
+              ) : (
+                <button className="rwd-login-btn">
+                  log in
+                </button>
+              )}
             </Link>
           </div>
         ) : (

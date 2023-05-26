@@ -6,13 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./authentication.css";
 import { obtainLoggedInUserData } from "./authApiCall/logInApi";
 import { authContext } from "../../hooks/context/authContext";
+import { productContext } from "../../hooks/context/productsContext";
 
 export const LogIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const RedirecToLocation = location.state?.pathname || "/";
   const [passwordIcon, setPasswordIcon] = useState(false);
-
+  const { getCartItem,getWishListItem } = useContext(productContext);
   const [userLoginCredential, setUserLoginCredential] = useState({
     email: "",
     password: "",
@@ -27,7 +28,10 @@ export const LogIn = () => {
       password,
       setAuthDispatch,
       navigate,
-      RedirecToLocation
+      RedirecToLocation,
+      getCartItem,
+      getWishListItem
+      
     );
   };
 
