@@ -1,61 +1,14 @@
 export const productReducer = (productState, { type, payload }) => {
   switch (type) {
-    case "ADD_ITEM_TO_CART":
+    case "CART_FUNCTIONS":
       return {
         ...productState,
         cart: payload,
       };
-    case "ADD_ITEM_TO_WISHLIST":
+    case "WISHLIST_FUNCTIONS":
       return {
         ...productState,
         wishList: payload,
-       
-      };
-    case "MOVE_ITEM_TO_CART":
-      return {
-        ...productState,
-        wishList: productState.wishList.filter(
-          ({ _id }) => _id !== payload._id
-        ),
-        cart: [...productState.cart, payload],
-      };
-    case "REMOVE_FROM_WISHLIST":
-      return {
-        ...productState,
-        wishList: productState.wishList.filter(
-          ({ _id }) => _id !== payload._id
-        ),
-      };
-    case "MOVE_ITEM_TO_WISHLIST":
-      return {
-        ...productState,
-        cart: productState.cart.filter(({ _id }) => _id !== payload._id),
-        wishList: [...productState.wishList, payload],
-      };
-    case "REMOVE_FROM_CART":
-      return {
-        ...productState,
-        cart: productState.cart.filter(({ _id }) => _id !== payload._id),
-      };
-    case "PRODUCT_QUANTITY_INCREMENT":
-      return {
-        ...productState,
-        cart: productState.cart.map((item) =>
-          item._id === payload._id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
-      };
-    case "PRODUCT_QUANTITY_DECREMENT":
-      return {
-        ...productState,
-        cart: productState.cart
-          .map((item) =>
-            item._id === payload._id
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          )
-          .filter(({ quantity }) => quantity !== 0),
       };
 
     case "SET_USER_ADDRESS":
@@ -67,6 +20,11 @@ export const productReducer = (productState, { type, payload }) => {
           [name]: value,
         },
       };
+       case "EMPATY_ADDRESS_ORDER_PLACED":
+        return{
+          ...productState,
+          setDeleverAddress:{}
+        }
 
     case "ADDRESS_FORM_SUBMIT":
       return {
@@ -132,7 +90,7 @@ export const productReducer = (productState, { type, payload }) => {
       return {
         ...productState,
         cart: [],
-        wishList:[]
+        wishList: [],
       };
     default:
       throw new Error(`invelid type ${type} check productReducer`);

@@ -17,27 +17,36 @@ export const SideBar = () => {
     filteredArray,
   } = useContext(filterContext);
 
-  const [_, setSearchParams] = useSearchParams();
-
+  const [searchParameter, setSearchParams] = useSearchParams();
   return (
     <>
       <div className="sidebar-container">
         <div className="filters">
           <h1>Filters</h1>
-
-          <button
-            onClick={() => {
-              setSearchParams({});
-              setfilterDispatch({ type: "RESET_ALL_FILTER" });
-              toast.success("All Filter Removed", {
-                className: "toast-styling",
-                position: "top-left",
-                autoClose: 500,
-              });
-            }}
-          >
-            Reset
-          </button>
+          {!searchParameter.size ? (
+            <button
+              onClick={() => {
+                setSearchParams({});
+                setfilterDispatch({ type: "RESET_ALL_FILTER" });
+              }}
+            >
+              Reset
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setSearchParams({});
+                setfilterDispatch({ type: "RESET_ALL_FILTER" });
+                toast.success("Filter Removed", {
+                  className: "toast-styling",
+                  position: "top-left",
+                  autoClose: 500,
+                });
+              }}
+            >
+              Reset
+            </button>
+          )}
         </div>
         <div
           className="price-case"
@@ -241,4 +250,3 @@ export const SideBar = () => {
     </>
   );
 };
-

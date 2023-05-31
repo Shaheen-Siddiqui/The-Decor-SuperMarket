@@ -25,6 +25,9 @@ const UserProfile = lazy(() =>
   import("./frontend/pages/UserProfile/UserProfile")
 );
 const Checkout = lazy(() => import("./frontend/pages/Checkout/Checkout"));
+const PageNotFound=lazy(()=>import("./frontend/components/404Error/PageNotFound"))
+
+
 
 function App() {
   const [bars, setBars] = useState(false);
@@ -42,6 +45,7 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
+
       />
       <Suspense fallback={<h1>Loading...</h1>}>
         <Header bars={bars} setBars={setBars} />
@@ -95,7 +99,7 @@ function App() {
             />
             <Route path="/mock" element={<Mockman />} />
             <Route path="/checkout" element={<Checkout />} />
-            {/* '404.' pending */}||{/* '404.' pending */}
+            <Route path="/*" element={<PageNotFound/>} />
           </Routes>
         </Suspense>
       </div>

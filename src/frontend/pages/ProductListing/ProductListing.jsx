@@ -31,12 +31,13 @@ export const ProductListing = () => {
   } = useContext(filterContext);
 
   const {
-    setProductDispatch,
     isAddedIntoCart,
     isAddedIntoWishList,
     obtainAddItemToCartApi,
     obtainAddItemToWishListApi,
+    deleteWishListItem,
   } = useContext(productContext);
+
   const { token } = useContext(authContext);
   const navigate = useNavigate();
 
@@ -86,18 +87,18 @@ export const ProductListing = () => {
                   } = item;
                   return (
                     <div className="product" key={_id}>
-                      <a href={`/product-detail/${_id}`}>
+                      <Link to={`/product-detail/${_id}`}>
                         <img
                           className="product-img"
                           src={productImg}
                           alt="a new collections"
                         />
-                      </a>
+                      </Link  >
 
                       <div className="product-cantent">
                         <h2 className="product-name">{title}</h2>
                         <h2>
-                          price: {price} &nbsp;{" "}
+                          price: {price} &nbsp;
                           <span className="card-pre-price">{prePrice}</span>
                         </h2>
                         <p>{category} </p>
@@ -138,10 +139,7 @@ export const ProductListing = () => {
                               icon={faHeartCirclePlus}
                               className="wislist-icon"
                               onClick={() => {
-                                setProductDispatch({
-                                  type: "ADD_ITEM_TO_WISHLIST",
-                                  payload: item,
-                                });
+                                deleteWishListItem(_id);
                                 toast.error("Remove Item From WishList", {
                                   className: "toast-styling",
                                 });
@@ -151,7 +149,7 @@ export const ProductListing = () => {
                             <FontAwesomeIcon
                               icon={faHeart}
                               className="wislist-icon"
-                              onClick={() => obtainAddItemToWishListApi(item)}
+                              onClick={() => {token?obtainAddItemToWishListApi(item):navigate("/login") }}
                             />
                           )}
                         </div>

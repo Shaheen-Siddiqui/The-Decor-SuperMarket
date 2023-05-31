@@ -13,6 +13,10 @@
 
 
 }
+.svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa{
+    border: none;
+    outline: none;
+}
 
 .hdr-logo,
 .logo-name {
@@ -141,6 +145,7 @@
     align-items: center;
     flex-direction: column;
     padding: 2rem;
+    z-index: 1;
 
 }
 

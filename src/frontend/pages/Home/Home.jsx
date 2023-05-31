@@ -1,23 +1,24 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SimpleImageSlider from "react-simple-image-slider";
 
 //internal imports
 import "./Home.css";
 import "../../components/Header/Header.css";
 import { Footer } from "../../components/Footer/Footer";
 import {
-  purple,
   godregBrand,
   hometownBrand,
   nilKamal,
   woodenStreetBrand,
+  sliderImages
 } from "../../assets";
 import { filterContext } from "../../hooks/context/filterContext";
-import { productContext } from "../../hooks/context/productsContext";
 
 export const Home = () => {
+  const [_, setImageNum] = useState(1);
+ 
   const { categoriesData, setfilterDispatch } = useContext(filterContext);
-  const {getCartItem}=useContext(productContext)
   const navigate = useNavigate();
 
   const setCategoryNavigate = (categoryName) => {
@@ -50,15 +51,27 @@ export const Home = () => {
   return (
     <>
       <div className="hero-img-case">
-        <img src={purple} alt="landing-hero" className="hero-image" />
+        <SimpleImageSlider
+          width={"100%"}
+          height={350}
+          images={sliderImages}
+          showBullets={true}
+          showNavs={true}
+          autoPlay={true}
+          onStartSlide={(index, length) => {
+            setImageNum(index);
+          }}
+          autoPlayDelay={2}
+        />
+
+      </div>
         <center>
           <Link to="/product-listing">
-            <button className="button" >
+            <button className="button">
               <span>Shop Now!! </span>
             </button>
           </Link>
         </center>
-      </div>
 
       {/*  */}
       <h1 className="category-desc">Top Categories of the year</h1>

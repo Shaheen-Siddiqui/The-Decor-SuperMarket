@@ -5,23 +5,26 @@ import {
   faCartShopping,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { faSquareMinus, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 
 //internal imports
-import {  emaptyWishList } from "../../assets";
+import { emaptyWishList } from "../../assets";
 import { productContext } from "../../hooks/context/productsContext";
 
 import "./WishList.css";
-import '../Cart/Cart.css'
-import '../ProductListing/ProductListing.css'
-
-
-
+import "../Cart/Cart.css";
+import "../ProductListing/ProductListing.css";
 
 export const WishList = () => {
-  const { wishList, setProductDispatch, isAddedIntoCart } =
-    useContext(productContext);
+  const {
+    wishList,
+    isAddedIntoCart,
+    deleteWishListItem,
+    obtainAddItemToCartApi,
+    incrementCartItems,
+  } = useContext(productContext);
   return (
     <div>
       <center>
@@ -54,6 +57,7 @@ export const WishList = () => {
               rating,
               _id,
             } = item;
+            console.log(item, "quantity");
             return (
               <div className="product wishlist-product" key={_id}>
                 <FontAwesomeIcon
@@ -61,10 +65,8 @@ export const WishList = () => {
                   size="2xl"
                   className="remove-wishlist"
                   onClick={() => {
-                    setProductDispatch({
-                      type: "REMOVE_FROM_WISHLIST",
-                      payload: item,
-                    });
+                    deleteWishListItem(_id);
+
                     toast.error("Removed From WishList", {
                       className: "toast-styling",
                     });
@@ -91,23 +93,24 @@ export const WishList = () => {
                   </div>
                   <div className="addtocart-btn">
                     {isAddedIntoCart(item) ? (
-                      <Link to="/cart">
-                        <button className="login-btns max-width-btn">
-                          <FontAwesomeIcon icon={faCartShopping} /> Already In
-                          Cart: [Go]
-                        </button>
-                      </Link>
+                      <button
+                        className="login-btns max-width-btn"
+                        onClick={() => {
+                          incrementCartItems(_id, "increment");
+                          toast.success(`Quantity Increased`, {
+                            className: "toast-styling",
+                          });
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faSquarePlus} />
+                        &nbsp; Already In Cart
+                      </button>
                     ) : (
                       <button
                         className="login-btns max-width-btn"
                         onClick={() => {
-                          setProductDispatch({
-                            type: "MOVE_ITEM_TO_CART",
-                            payload: item,
-                          });
-                          toast.success("Moved To Cart", {
-                            className: "toast-styling",
-                          });
+                          obtainAddItemToCartApi(item);
+                          deleteWishListItem(_id);
                         }}
                       >
                         <FontAwesomeIcon icon={faCartShopping} /> Move To Cart
@@ -124,5 +127,4 @@ export const WishList = () => {
   );
 };
 
-export {WishList as default}
-
+export { WishList as default };

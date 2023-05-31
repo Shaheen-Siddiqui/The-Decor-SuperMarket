@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Audio } from "react-loader-spinner";
 
@@ -13,9 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 //internal inports
-import '../Authentication/authentication.css'
-import '../ProductListing/ProductListing.css'
-import '../Home/Home.css'
+import "../Authentication/authentication.css";
+import "../ProductListing/ProductListing.css";
+import "../Home/Home.css";
 import { productContext } from "../../hooks/context/productsContext";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -23,8 +22,13 @@ import axios from "axios";
 export const ProductDetail = () => {
   const [singleProduct, setSingleProduct] = useState([]);
   const [singleProductLoading, setSingleProductLoading] = useState(false);
-  const { isAddedIntoCart, isAddedIntoWishList, setProductDispatch } =
-    useContext(productContext);
+  const {
+    isAddedIntoCart,
+    isAddedIntoWishList,
+    obtainAddItemToCartApi,
+    obtainAddItemToWishListApi,
+    deleteWishListItem,
+  } = useContext(productContext);
   const { productId } = useParams();
 
   useEffect(() => {
@@ -55,112 +59,93 @@ export const ProductDetail = () => {
   } = singleProduct;
   return (
     <center key={_id}>
-        <div className="single-product-page-case">
-      {singleProductLoading ? (
-        <h1 style={{ width: "10rem" }}>
-          <Audio
-            height="80"
-            width="80"
-            radius="9"
-            color="blue"
-            ariaLabel="loading"
-            wrapperClass
-          />
-          Loading...
-        </h1>
-      ) : (
-        <>
-          <div className="product product-detail-page" >
-            <img
-              className="product-img"
-              src={productImg}
-              alt="a new collections"
+      <div className="single-product-page-case">
+        {singleProductLoading ? (
+          <h1 style={{ width: "10rem" }}>
+            <Audio
+              height="80"
+              width="80"
+              radius="9"
+              color="blue"
+              ariaLabel="loading"
+              wrapperClass
             />
-            <div className="product-cantent product-detail-cantent">
-              <h2 className="product-name">Title: {title}</h2>
-              <h2>
-                price: {price} &nbsp;
-                <span className="card-pre-price">{prePrice}</span>
-              </h2>
-              <p>{category} </p>
-              <div className="rating-stuff">
-                <p>{discount}</p>
-                <p>
-                  rating:{" "}
-                  <strong>
-                    <FontAwesomeIcon icon={faStar} />
-                    <em> {rating}</em>
-                  </strong>
-                </p>
-              </div>
-              <div className="cart-wishlist">
-                <div className="addtocart-btn">
-                  {isAddedIntoCart(singleProduct) ? (
-                    <Link to="/cart">
-                      <button className="login-btns">
-                        <FontAwesomeIcon icon={faRightToBracket} /> Go to cart
+            Loading...
+          </h1>
+        ) : (
+          <>
+            <div className="product product-detail-page">
+              <img
+                className="product-img"
+                src={productImg}
+                alt="a new collections"
+              />
+              <div className="product-cantent product-detail-cantent">
+                <h2 className="product-name">Title: {title}</h2>
+                <h2>
+                  price: {price} &nbsp;
+                  <span className="card-pre-price">{prePrice}</span>
+                </h2>
+                <p>{category} </p>
+                <div className="rating-stuff">
+                  <p>{discount}</p>
+                  <p>
+                    rating:{" "}
+                    <strong>
+                      <FontAwesomeIcon icon={faStar} />
+                      <em> {rating}</em>
+                    </strong>
+                  </p>
+                </div>
+                <div className="cart-wishlist">
+                  <div className="addtocart-btn">
+                    {isAddedIntoCart(singleProduct) ? (
+                      <Link to="/cart">
+                        <button className="login-btns">
+                          <FontAwesomeIcon icon={faRightToBracket} /> Go to cart
+                        </button>
+                      </Link>
+                    ) : (
+                      <button
+                        className="login-btns"
+                        onClick={() => obtainAddItemToCartApi(singleProduct)}
+                      >
+                        <FontAwesomeIcon icon={faCartPlus} /> add to cart
                       </button>
-                    </Link>
+                    )}
+                  </div>
+                  {isAddedIntoWishList(singleProduct) ? (
+                    <FontAwesomeIcon
+                      icon={faHeartCirclePlus}
+                      className="wislist-icon"
+                      onClick={() =>
+                       
+                        deleteWishListItem(singleProduct)
+                      }
+                    />
                   ) : (
-                    <button
-                      className="login-btns"
-                      onClick={() => {
-                        setProductDispatch({
-                          type: "ADD_ITEM_TO_CART",
-                          payload: singleProduct,
-                        });
-                        toast.success("Added To Cart!", {
-                          className: "toast-styling",
-                        });
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faCartPlus} /> add to cart
-                    </button>
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className="wislist-icon"
+                      onClick={() =>
+                       
+                        obtainAddItemToWishListApi(singleProduct)
+                      }
+                    />
                   )}
                 </div>
-                {isAddedIntoWishList(singleProduct) ? (
-                  <FontAwesomeIcon
-                    icon={faHeartCirclePlus}
-                    className="wislist-icon"
-                    onClick={() => {
-                      setProductDispatch({
-                        type: "ADD_ITEM_TO_WISHLIST",
-                        payload: singleProduct,
-                      });
-                      toast.error("Remove Item From WishList", {
-                        className: "toast-styling",
-                      });
-                    }}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className="wislist-icon"
-                    onClick={() => {
-                      setProductDispatch({
-                        type: "ADD_ITEM_TO_WISHLIST",
-                        payload: singleProduct,
-                      });
-                      toast.success("Added Item To WishList", {
-                        className: "toast-styling",
-                      });
-                    }}
-                  />
-                )}
               </div>
             </div>
-          </div>
-           <Link to="/product-listing">
-             <button className="button">
-               <span>Go Back </span>
-             </button>
-           </Link> 
-         </> 
-      )}
+            <Link to="/product-listing">
+              <button className="button">
+                <span>Go Back </span>
+              </button>
+            </Link>
+          </>
+        )}
       </div>
     </center>
   );
 };
 
-export {ProductDetail as default}
-
+export { ProductDetail as default };
