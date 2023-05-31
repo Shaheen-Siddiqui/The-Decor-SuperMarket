@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useState, useReducer } from "react";
 import { productReducer } from "../reducer/ProductReducer";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -6,13 +6,12 @@ import { useNavigate } from "react-router-dom";
 //------------//
 export const productContext = createContext();
 export const ProductContextProvider = ({ children }) => {
-  const navigate = useNavigate();
-
   const [productState, setProductDispatch] = useReducer(productReducer, {
     cart: [],
     wishList: [],
     obtainUserAddress: [],
     setDeleverAddress: {},
+
     userAddress: {
       userName: "",
       hoseNumber: "",
@@ -34,7 +33,7 @@ export const ProductContextProvider = ({ children }) => {
   } = productState;
 
   const encodedToken = localStorage.getItem("token");
-  
+
   const obtainAddItemToCartApi = async (product) => {
     try {
       const response = await axios.post(
@@ -43,7 +42,7 @@ export const ProductContextProvider = ({ children }) => {
         { headers: { authorization: encodedToken } }
       );
       setProductDispatch({
-        type: "ADD_ITEM_TO_CART",
+        type: "CART_FUNCTIONS",
         payload: response.data.cart,
       });
 
@@ -58,63 +57,127 @@ export const ProductContextProvider = ({ children }) => {
   const getCartItem = async () => {
     const encodedToken = localStorage.getItem("token");
     try {
-      console.log(encodedToken, "token");
-      if (encodedToken!==null) {
-        console.log(encodedToken, "token");
+      if (encodedToken !== null) {
         const response = await axios.get("/api/user/cart", {
           headers: { authorization: encodedToken },
         });
 
         setProductDispatch({
-          type: "ADD_ITEM_TO_CART",
+          type: "CART_FUNCTIONS",
           payload: response.data.cart,
         });
-        console.log(response.data.cart, "newcart");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  
+  const deleteCartItem = async (productId, isOnCheckout) => {
+    const encodedToken = localStorage.getItem("token");
+    try {
+      const response = await axios.delete(`/api/user/cart/${productId}`, {
+        headers: { authorization: encodedToken },
+      });
 
-  const getWishListItem = async () => {
-    // if (encodedToken !== null) {
-    //   try {
-    //     const response = await axios.get("/api/user/wishlist", {
-    //       headers: { authorization: encodedToken },
-    //     });
-    //     setProductDispatch({
-    //       type: "ADD_ITEM_TO_WISHLIST",
-    //       payload: response.data.wishList,
-    //     });
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
+      setProductDispatch({
+        type: "CART_FUNCTIONS",
+        payload: response.data.cart,
+      });
+      isOnCheckout &&
+        toast.error("Romoved From Cart", {
+          className: "toast-styling",
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const orderPlacedItemDelete = () => {
+    try {
+      for (let i = 0; i < cart.length; i++) {
+        deleteCartItem(cart[i]._id, false);
+      }
+      toast.success("empaty cart successfully", { className: "toast-styling" });
+    } catch (error) {
+      toast.error("issue to empty cart");
+    }
+  };
+
+  const incrementCartItems = async (productId, changeType) => {
+    const encodedToken = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        `/api/user/cart/${productId}`,
+        {
+          action: {
+            type: changeType === "increment" ? "increment" : "decrement",
+          },
+        },
+        { headers: { authorization: encodedToken } }
+      );
+      setProductDispatch({
+        type: "CART_FUNCTIONS",
+        payload: response.data.cart,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const obtainAddItemToWishListApi = async (product) => {
-    // try {
-    //   const response = await axios.post(
-    //     "/api/user/wishlist",
-    //     { product },
-    //     { headers: { authorization: encodedToken } }
-    //   );
-    //   setProductDispatch({
-    //     type: "ADD_ITEM_TO_WISHLIST",
-    //     payload: response.data.wishlist,
-    //   });
-    //   toast.success("Added Item To WishList", {
-    //     className: "toast-styling",
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    const encodedToken = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "/api/user/wishlist",
+        { product },
+        { headers: { authorization: encodedToken } }
+      );
+      setProductDispatch({
+        type: "WISHLIST_FUNCTIONS",
+        payload: response.data.wishlist,
+      });
+      toast.success("Added To WishList", {
+        className: "toast-styling",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getWishListItem = async () => {
+    const encodedToken = localStorage.getItem("token");
+    if (encodedToken !== null) {
+      try {
+        const response = await axios.get("/api/user/wishlist", {
+          headers: { authorization: encodedToken },
+        });
+        setProductDispatch({
+          type: "WISHLIST_FUNCTIONS",
+          payload: response.data.wishlist,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const deleteWishListItem = async (productId) => {
+    const encodedToken = localStorage.getItem("token");
+    try {
+      const response = await axios.delete(`/api/user/wishlist/${productId}`, {
+        headers: { authorization: encodedToken },
+      });
+      setProductDispatch({
+        type: "WISHLIST_FUNCTIONS",
+        payload: response.data.wishlist,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const priceOfProductsWithQuantity = cart.reduce(
-    (acc, { prePrice, quantity }) => (acc = acc + Number(prePrice)) * quantity,
+    (acc, { prePrice, qty }) => (acc = acc + Number(prePrice)) * qty,
     0
   );
 
@@ -147,8 +210,15 @@ export const ProductContextProvider = ({ children }) => {
         coupanApplyOnTotalAmount,
         getCartItem,
         obtainAddItemToCartApi,
-        obtainAddItemToWishListApi,
+
         getWishListItem,
+        obtainAddItemToWishListApi,
+        deleteWishListItem,
+
+        deleteCartItem,
+        incrementCartItems,
+
+        orderPlacedItemDelete,
       }}
     >
       {children}

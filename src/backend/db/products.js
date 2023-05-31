@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    _id: 1,
+    _id: "1",
     productImg:
       "https://shop.gkwretail.com/cdn/shop/products/DressingTableWhiteandGoldVanitySetwithLightedMirror_Stool_1024x1024.jpg?v=1630488000",
     title: "Nivea Pearl And Beauty Dressing Table",
@@ -16,10 +16,10 @@ export const products = [
     discount: "59% off",
     rating: "3",
     category: "Dressing Table",
-    quantity: 1,
+    
   },
   {
-    _id: 2,
+    _id: "2",
     productImg:
       "https://shop.gkwretail.com/cdn/shop/products/Design-Sofa-Set_-American-Style-Modern-Fabric-Upholstered-Sofa-Set_1.png?v=1630733506",
     title: "Villen classic 100ML Luxury fragrance",
@@ -28,10 +28,10 @@ export const products = [
     discount: "39% off",
     rating: "4",
     category: "Sofa",
-    quantity: 1,
+    
   },
   {
-    _id: 3,
+    _id: "3",
     productImg:
       "https://static.wixstatic.com/media/0102ae_19e73ed46c2f47828ccc6d17e5a1f1b5.jpg/v1/fill/w_598,h_470,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/0102ae_19e73ed46c2f47828ccc6d17e5a1f1b5.jpg",
     title: "FOGG Scent Jasmine 50ml Eau de Luxury set",
@@ -40,10 +40,10 @@ export const products = [
     discount: "59% off",
     rating: "3",
     category: "Luxury set",
-    quantity: 1,
+    
   },
   {
-    _id: 4,
+    _id: "4",
     productImg:
       "https://sc04.alicdn.com/kf/Ha374d5369fa349278aa19ff350e3dc1ai.jpg",
     title: "DOVE Original Dressing Table Spray",
@@ -52,10 +52,10 @@ export const products = [
     discount: "45% off",
     rating: "4",
     category: "Dressing Table",
-    quantity: 1,
+    
   },
   {
-    _id: 5,
+    _id: "5",
     productImg:
       "https://i0.wp.com/woodwoon.com/wp-content/uploads/2023/02/BK0018-bed-modern-bed-design-in-pakistan-Woodwoon.webp?fit=1536%2C1024&ssl=1",
     title: "Engage Luxury set Body GAS FREE Spray ",
@@ -64,10 +64,10 @@ export const products = [
     discount: "39% off",
     rating: "5",
     category: "Bed",
-    quantity: 1,
+    
   },
   {
-    _id: 6,
+    _id: "6",
     productImg:
       "https://cdn.trendir.com/wp-content/uploads/old/interiors/2016/01/26/rustic-bedroom-with-fireplace-target-point-sardegna.jpg",
     title: "DENVER Black Code Body Body Spray",
@@ -76,10 +76,10 @@ export const products = [
     discount: "56% off",
     rating: "3",
     category: "Bed",
-    quantity: 1,
+    
   },
   {
-    _id: 7,
+    _id: "7",
     productImg:
       "https://sc04.alicdn.com/kf/H9806a200efd34ada8617181e6081ff47r.jpg",
     title: "JAGUAR Black Eau de Toilette Luxury set",
@@ -88,10 +88,10 @@ export const products = [
     discount: "59% off",
     rating: "1",
     category: "Luxury set",
-    quantity: 1,
+    
   },
   {
-    _id: 8,
+    _id: "8",
     productImg:
       "https://stylesatlife.com/wp-content/uploads/2019/03/luxury-bed-designs.jpg.webp",
     title: "Wild Stone LEgend, Red, US, HYDRA Body Spray",
@@ -100,10 +100,10 @@ export const products = [
     discount: "49% off",
     rating: "2",
     category: "Bed",
-    quantity: 1,
+    
   },
   {
-    _id: 9,
+    _id: "9",
     productImg:
       "https://hatil.in/sites/default/files/styles/hatil_product_list_crop/public/Mystic-113_1.jpg?itok=Qx30Lv3Q",
     title: "Engage Blush Dressing Table Spray",
@@ -112,10 +112,10 @@ export const products = [
     discount: "49% off",
     rating: "5",
     category: "Dressing Table",
-    quantity: 1,
+    
   },
   {
-    _id: 10,
+    _id: "10",
     productImg:
       "https://4.imimg.com/data4/OB/WK/ANDROID-40686904/product-1000x1000.jpeg",
     title: "THE MAN COMPANY Non-Gas Body fragrance",
@@ -124,10 +124,10 @@ export const products = [
     discount: "49% off",
     rating: "2",
     category: "Sofa",
-    quantity: 1,
+    
   },
   {
-    _id: 11,
+    _id: "11",
     productImg:
       "https://5.imimg.com/data5/SELLER/Default/2021/11/ZK/HI/YC/12803526/1-1000x1000.jpg",
     title: "Secret temptation Te Amo combo fragrance",
@@ -136,10 +136,10 @@ export const products = [
     discount: "49% off",
     rating: "1",
     category: "Sofa",
-    quantity: 1,
+    
   },
   {
-    _id: 12,
+    _id: "12",
     productImg: "https://i.ytimg.com/vi/Qf1vC6ZxPYo/maxresdefault.jpg",
     title: "AXE Dark Temptation Long Lasting fragrance",
     price: "360",
@@ -147,10 +147,10 @@ export const products = [
     discount: "49% off",
     rating: "1",
     category: "Sofa",
-    quantity: 1,
+    
   },
   {
-    _id: 13,
+    _id: "13",
     productImg:
       "https://www.betterhomeindia.com/wp-content/uploads/2019/03/Cosmo-bedset-betterhomeindia.jpg",
     title: "Wild Stone Ultra Sensual Eau de Luxury set",
@@ -159,10 +159,10 @@ export const products = [
     discount: "34% off",
     rating: "4",
     category: "Luxury set",
-    quantity: 1,
+    
   },
   {
-    _id: 14,
+    _id: "14",
     productImg:
       "https://assets.isu.pub/document-structure/230214104705-a21b91ac2f37576a76c561a6024d1d19/v1/f6ec884b6af11767c1f367ae9cb82357.jpeg",
     title: "FOGG 1 Royal and 1 Napoleon Dressing Table",
@@ -171,10 +171,10 @@ export const products = [
     discount: "49% off",
     rating: "2",
     category: "Bed",
-    quantity: 1,
+    
   },
   {
-    _id: 15,
+    _id: "15",
     productImg:
       "https://5.imimg.com/data5/SELLER/Default/2022/7/YE/YO/RR/1963311/royal-heavy-wooden-crafted-dressing-table-set-1000x1000.jpg",
     title: "HE Respect Perfumed Dressing Table Spray",
@@ -183,10 +183,10 @@ export const products = [
     discount: "49% off",
     rating: "3",
     category: "Dressing Table",
-    quantity: 1,
+    
   },
   {
-    _id: 16,
+    _id: "16",
     productImg:
       "https://www.curvesandcarvings.com/pub/media/catalog/product/cache/5928e112830e542696586a0d661d5090/b/e/bed-0256-1.jpg",
     title: "Gucci Guilty BLOOM PINK Eau de Luxury set",
@@ -195,10 +195,10 @@ export const products = [
     discount: "49% off",
     rating: "3",
     category: "Luxury set",
-    quantity: 1,
+    
   },
   {
-    _id: 17,
+    _id: "17",
     productImg:
       "https://media.designcafe.com/wp-content/uploads/2019/12/20235858/leather-sofa-design-for-modern-living-room.jpg",
     title: "Gucci Guilty BLOOM PINK Eau de sofa",
@@ -207,10 +207,10 @@ export const products = [
     discount: "49% off",
     rating: "3",
     category: "Sofa",
-    quantity: 1,
+    
   },
   {
-    _id: 18,
+    _id: "18",
     productImg:
       "https://royalzig.com/wp-content/uploads/2020/01/Classical-Egyption-Bed-Back-and-Gold-6.jpg",
     title: "Gucci Guilty BLOOM PINK Eau de Luxury set",
@@ -219,6 +219,5 @@ export const products = [
     discount: "49% off",
     rating: "3",
     category: "Luxury set",
-    quantity: 1,
   },
 ];

@@ -1,6 +1,7 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
+import Tippy from "@tippyjs/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,10 +34,9 @@ export const Header = ({ bars, setBars }) => {
   ];
   const [isUserCaseOpen, setIsUserCaseOpen] = useState(false);
   const { setfilterDispatch, search } = useContext(filterContext);
-  const { cart, wishList, setProductDispatch, getCartItem } =
-    useContext(productContext);
+  const { cart, wishList, setProductDispatch } = useContext(productContext);
   const { token, user, setAuthDispatch } = useContext(authContext);
-
+  const navigate = useNavigate();
   const userLogoutHandler = () => {
     setAuthDispatch({ type: "USER_LOGOUT" });
     setProductDispatch({ type: "USER_LOGGED_OUT" });
@@ -61,20 +61,19 @@ export const Header = ({ bars, setBars }) => {
           </Link>
 
           <div className="search-baar">
-            <Link to="./product-listing">
-              <input
-                type="search"
-                placeholder="Search..."
-                size="30"
-                value={search}
-                onChange={(event) =>
-                  setfilterDispatch({
-                    type: "SEARCH_PRODUCTS",
-                    payload: event.target.value,
-                  })
-                }
-              />
-            </Link>
+            <input
+              type="search"
+              placeholder="Search..."
+              size="30"
+              value={search}
+              onChange={(event) =>
+                setfilterDispatch({
+                  type: "SEARCH_PRODUCTS",
+                  payload: event.target.value,
+                })
+              }
+              onKeyPress={(e) => e.which === 13 && navigate("/product-listing")}
+            />
             <FontAwesomeIcon icon={faMagnifyingGlass} size="xl" />
           </div>
 
@@ -82,12 +81,15 @@ export const Header = ({ bars, setBars }) => {
             <Link to="/product-listing" className="remove-ud">
               <h2>Explore</h2>
             </Link>
+
             <Link to="/wish-list">
               <div>
                 <p className="c-w-count">{wishList.length}</p>
                 <br />
 
-                <FontAwesomeIcon icon={faHeart} size="2xl" />
+                <Tippy content="wishlist" delay={[700, 0]}>
+                  <FontAwesomeIcon icon={faHeart} size="2xl" />
+                </Tippy>
               </div>
             </Link>
 
@@ -95,14 +97,21 @@ export const Header = ({ bars, setBars }) => {
               <div>
                 <p className="c-w-count">{cart.length}</p>
                 <br />
-                <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
+                <Tippy content="Cart" delay={[700, 0]}>
+                  <FontAwesomeIcon icon={faCartArrowDown} size="2xl" />
+                </Tippy>
               </div>
             </Link>
-            <FontAwesomeIcon
-              icon={faAddressCard}
-              size="2xl"
-              onClick={() => setIsUserCaseOpen(!isUserCaseOpen)}
-            />
+
+            <Tippy content="address" delay={[700, 0]}>
+              <FontAwesomeIcon
+                icon={faAddressCard}
+                size="2xl"
+                onClick={() => {
+                  setIsUserCaseOpen(!isUserCaseOpen);
+                }}
+              />
+            </Tippy>
 
             <Link to="/login">
               {token ? (
@@ -148,9 +157,7 @@ export const Header = ({ bars, setBars }) => {
                   Log out
                 </button>
               ) : (
-                <button className="rwd-login-btn">
-                  log in
-                </button>
+                <button className="rwd-login-btn">log in</button>
               )}
             </Link>
           </div>

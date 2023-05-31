@@ -25,7 +25,11 @@ export const Cart = () => {
     discounts,
     totalPrice,
     coupanApplyOnTotalAmount,
+    deleteCartItem,
+    incrementCartItems,
+    obtainAddItemToWishListApi
   } = useContext(productContext);
+
   const invokeOnCoupanApply = () => {
     setIsCoupanApplied(!isCoupanApplied);
     setProductDispatch({ type: "COUPAN_APPLIED", payload: totalPrice - 5 });
@@ -59,7 +63,7 @@ export const Cart = () => {
                 category,
                 price,
                 productImg,
-                quantity,
+                qty,
                 _id,
                 discount,
               } = item;
@@ -81,35 +85,32 @@ export const Cart = () => {
                     </div>
                     <div className="product-quantity">
                       <p>Quantity:</p>
-                      <FontAwesomeIcon
-                        icon={faSquareMinus}
-                        size="xl"
-                        className="qty-logo"
+                      <button
+                        className={
+                          qty <= 1 ? "not-alowed" : "qty-logo not-alowed-btn"
+                        }
+                        disabled={qty <= 1}
                         onClick={() => {
-                          setProductDispatch({
-                            type: "PRODUCT_QUANTITY_DECREMENT",
-                            payload: item,
-                          });
-                          toast.error("You Have Decreased Quantity", {
-                            className: "toast-styling",
-                          });
+                          incrementCartItems(_id, "decrement");
+                          toast.error("Quantity Decreased", {className:"toast-styling"});
                         }}
-                      />
-                      <h4>{quantity}</h4>
-                      <FontAwesomeIcon
-                        icon={faSquarePlus}
-                        size="xl"
-                        className="qty-logo"
-                        onClick={() => {
-                          setProductDispatch({
-                            type: "PRODUCT_QUANTITY_INCREMENT",
-                            payload: item,
-                          });
-                          toast.success("You Have Increased Quantity", {
-                            className: "toast-styling",
-                          });
-                        }}
-                      />
+                      >
+                        <FontAwesomeIcon icon={faSquareMinus} size="xl" />
+                      </button>
+                      <h4>{qty}</h4>
+                      <button className="not-alowed-btn">
+                        <FontAwesomeIcon
+                          icon={faSquarePlus}
+                          size="xl"
+                          className="qty-logo"
+                          onClick={() => {
+                            incrementCartItems(_id, "increment");
+                            toast.success("Quantity Increased", {
+                              className: "toast-styling",
+                            });
+                          }}
+                        />
+                      </button>
                     </div>
                     {isAddedIntoWishList(item) ? (
                       <Link to="/wish-list">
@@ -121,13 +122,10 @@ export const Cart = () => {
                       <button
                         className="card-btn"
                         onClick={() => {
-                          setProductDispatch({
-                            type: "MOVE_ITEM_TO_WISHLIST",
-                            payload: item,
-                          });
-                          toast.success("Moved To WishList", {
-                            className: "toast-styling",
-                          });
+                          
+                          obtainAddItemToWishListApi(item)
+                          deleteCartItem(_id)
+                         
                         }}
                       >
                         Move To Wishlist
@@ -136,15 +134,7 @@ export const Cart = () => {
 
                     <button
                       className="card-btn remove-card-btn"
-                      onClick={() => {
-                        setProductDispatch({
-                          type: "REMOVE_FROM_CART",
-                          payload: item,
-                        });
-                        toast.error("Romoved From Cart", {
-                          className: "toast-styling",
-                        });
-                      }}
+                      onClick={() => deleteCartItem(_id)}
                     >
                       Remove From Cart
                     </button>
@@ -179,7 +169,7 @@ export const Cart = () => {
                 <p>₹ {priceOfProductsWithQuantity}</p>
                 <p>-₹ {discounts}</p>
                 <p>FREE</p>
-                <p>₹ 5%</p>
+                <p>₹ 5</p>
               </div>
             </div>
             <div className="total-amount-case">
@@ -198,6 +188,7 @@ export const Cart = () => {
         </section>
       )}
     </div>
+
   );
 };
 

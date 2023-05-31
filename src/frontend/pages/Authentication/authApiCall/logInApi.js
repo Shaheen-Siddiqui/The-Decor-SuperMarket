@@ -8,7 +8,8 @@ export async function obtainLoggedInUserData(
   setAuthDispatch,
   navigate,
   RedirecToLocation,
-  getCartItem
+  getCartItem,
+  getWishListItem
 ) {
   try {
     const Response = await axios.post("/api/auth/login", { email, password });
@@ -30,6 +31,7 @@ export async function obtainLoggedInUserData(
       });
 
       getCartItem();
+      getWishListItem();
     } else {
       toast.error("The credentials you entered are invalid");
     }

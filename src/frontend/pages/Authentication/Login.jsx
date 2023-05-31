@@ -30,8 +30,7 @@ export const LogIn = () => {
       navigate,
       RedirecToLocation,
       getCartItem,
-      getWishListItem
-      
+      getWishListItem,
     );
   };
 

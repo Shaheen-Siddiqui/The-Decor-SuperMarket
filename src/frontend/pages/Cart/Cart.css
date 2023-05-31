@@ -18,7 +18,15 @@
     font-size: 2.3rem;
     text-transform: uppercase;
 }
-
+.not-alowed{
+    cursor: not-allowed;
+    border: none;
+    outline: none;
+}
+.not-alowed-btn{
+    border: none;
+    outline: none;
+}
 .single-card-img {
     height: 28rem;
     width: 35rem;
@@ -45,7 +53,12 @@
     gap: 1.4rem;
     cursor: pointer;
 }
+.product-quantity-in-wishlist{
+    display: flex;
+    border:solid;
+    
 
+}
 .card-btn {
     padding: 0.5rem;
     border-radius: 5px;
@@ -63,6 +76,7 @@
 
 .qty-logo {
     color: var(--secondary-color);
+    cursor: pointer;
 }
 
 .emapty-cart-img {
@@ -93,7 +107,6 @@
     height: fit-content;
     position: sticky;
     border: 1rem solid var(--logo-color);
-    /* z-index: -1; */
 }
 
 .coupon-case {
@@ -116,7 +129,9 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem 0.5rem;
-    gap: 15rem
+    gap: 15rem;
+    align-items: center;
+
 }
 
 
@@ -124,6 +139,9 @@
     color: #12ad12;
     text-transform: capitalize;
     text-align: center;
+}
+.checkout-products-hr{
+    border-color: var(--primary-color);
 }
 
 .total-amount-case {

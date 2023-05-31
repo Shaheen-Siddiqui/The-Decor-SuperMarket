@@ -16,3 +16,43 @@
 .addtocart-btn .max-width-btn{
     width: 26rem;
 }
+
+
+/* //Button  */
+.button {
+    border-radius: 4px;
+    background-color: var(--logo-color);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 2rem;
+    padding: 2rem;
+    width: 20rem;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    opacity: 0;
+    top: 0;
+    right: -2rem;
+    transition: 0.9s;
+}
+
+.button:hover span {
+    padding-right: 2.5rem;
+}
+
+.button:hover span:after {
+    opacity: 0.7;
+    right: 0;
+}

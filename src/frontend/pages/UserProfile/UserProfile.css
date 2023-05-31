@@ -12,10 +12,13 @@
 
 #address-form {
     width: 45rem;
-    padding: 3rem 3rem 1.5rem 3rem;
+    padding: 3rem 3rem 2.5rem 3rem;
     margin: 0;
 }
 
+#dummy-addredd-top{
+    margin-top: 1rem;
+}
 .left-address-case {
     display: flex;
     align-items: center;
@@ -29,7 +32,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     width: 50rem;
-    height: 61rem;
+    height: 60rem;
 }
 
 .address-case {
