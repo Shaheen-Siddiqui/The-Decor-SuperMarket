@@ -49,7 +49,6 @@ export const Checkout = () => {
         toast.error("please select address", {
           className: "toast-styling",
         });
-
       } else {
         setProductDispatch({type:"EMPATY_ADDRESS_ORDER_PLACED"})
         setModalBox(true);

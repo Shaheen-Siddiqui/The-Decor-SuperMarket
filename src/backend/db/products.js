@@ -129,7 +129,7 @@ export const products = [
   {
     _id: "11",
     productImg:
-      "https://5.imimg.com/data5/SELLER/Default/2021/11/ZK/HI/YC/12803526/1-1000x1000.jpg",
+      "https://shop.gkwretail.com/cdn/shop/products/Designer-Sofa-Set-Chinese-Recliner-Sectional-Designs-Kisasa-Puffy-Modern-Sofa-Set-_Grey_3.jpg?v=1616069441",
     title: "Secret temptation Te Amo combo fragrance",
     price: "450",
     prePrice: "899",
@@ -176,7 +176,7 @@ export const products = [
   {
     _id: "15",
     productImg:
-      "https://5.imimg.com/data5/SELLER/Default/2022/7/YE/YO/RR/1963311/royal-heavy-wooden-crafted-dressing-table-set-1000x1000.jpg",
+      "https://media.istockphoto.com/id/490358310/photo/dressing-table-art-deco-style.jpg?s=612x612&w=0&k=20&c=_qK3r-iWBJfToNQ5I0Bxj6WLFy3FpbVrjpqcVlmIgjE=",
     title: "HE Respect Perfumed Dressing Table Spray",
     price: "470",
     prePrice: "799",
