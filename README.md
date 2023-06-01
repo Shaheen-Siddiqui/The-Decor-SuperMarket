@@ -1,13 +1,7 @@
-# Project Title
---The Decor-SuperMarket--
+## Project Title:
+# ***THE DECOR SUPERMARKET***
 
-## Demo link
-access my site at -------
-
-# About the app
-# Screen shot
- {...}
-
+Access My Site At: https://the-decor-supermarket.netlify.app/
 
 # Features
 - Home Page
@@ -28,16 +22,59 @@ access my site at -------
 - Address Management
 - Checkout
 
- # Technologies
-- React
-- JSX
-- CSS
-- MockBee
+---
+
+## TECHNOLOGIES USED
+
+### FRONTEND
+
+1. React JS (useContext, useReducer)
+2. React Router v6
+3. Vanilla CSS
+4. fortawesome Icons
+5. react-loader-spinner
+6. react-toastify
+7. react-image-slider
+8. tippyjs/react
+
+### BACKEND
+
+1. mockBee - https://mockbee.netlify.app/
+
+---
 
 ## Play with it
 - fork the Project
 - Install npm with npm install in your Terminal
 - Run npm start
+---
+
+## About the app
+# Demo video
+ {...}
+ -----
+# Screen shot
+## 1. home page
+ ![D`core-superMarket(home page)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/5a8cb73f-b75b-424d-8719-31a24f4e22af)
+ 
+## 2 Product Listing Page
+ ![D`core-superMarket-(product listing page)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/8f3b3451-b14f-4b00-9b86-a8f227578741)
+ 
+## 3 Cart Page
+![D`core-superMarket-(cart)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/ac23d03c-57a8-4ca9-bd76-f85eb32ecf14)
+
+## 4 Wishlist Page
+![D`core-superMarket-(wishlist)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/623056b3-378b-439a-80b9-a6d760812529)
+
+## 5 Single Product Deatil
+![D`core-superMarket-(product Deatil)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/221f3b94-2864-4548-be7d-9bd3fb969f85)
+
+## 6 Address Mnagement 
+![D`core-superMarket-(Address menegment)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/365ee979-6983-48ea-b3ab-189cb6e6772e)
+
+## 7 Checkout page
+![D`core-superMarket-(checkout)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/16a09872-28c1-42de-9479-33ac9a3926ea)
+
 
 ## let's come to Coffie with Me
 
