@@ -1,10 +1,9 @@
 ## Project Title:
 # ***THE DECOR SUPERMARKET***
+ Access This Site At: https://the-decor-supermarket.netlify.app/
 
 # Demo video
   video URL:         https://www.awesomescreenshot.com/video/17959295?key=26d1149f307bfb71c4db8d5e4469d7d3
-
-  Access My Site At: https://the-decor-supermarket.netlify.app/
 
 # Features
 - Home Page
