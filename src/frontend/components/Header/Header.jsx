@@ -171,7 +171,7 @@ export const Header = ({ bars, setBars }) => {
           {isUserCaseOpen && (
             <div className="user-detail-space">
               <h2>name</h2>
-              <p className="current-user-detail">{user.firstName}</p>
+              <p className="current-user-detail">{user.fullName}</p>
               <h2>email</h2>
               <p className="current-user-detail">{user.email}</p>
               <Link to="/user-profile" onClick={() => setIsUserCaseOpen(false)}>
