@@ -13,7 +13,7 @@ export const LogIn = () => {
   const location = useLocation();
   const RedirecToLocation = location.state?.pathname || "/";
   const [passwordIcon, setPasswordIcon] = useState(false);
-  const { getCartItem,getWishListItem } = useContext(productContext);
+  const { getCartItem, getWishListItem } = useContext(productContext);
   const [userLoginCredential, setUserLoginCredential] = useState({
     email: "",
     password: "",
@@ -30,15 +30,15 @@ export const LogIn = () => {
       navigate,
       RedirecToLocation,
       getCartItem,
-      getWishListItem,
+      getWishListItem
     );
   };
 
   const guestCredentialHandler = (event) => {
     setUserLoginCredential({
       ...userLoginCredential,
-      email: "Shaheen@gmail.com",
-      password: "shaheen_123",
+      email: "HumayraAmaan@gmail.com",
+      password: "Amaan_143",
     });
     event.preventDefault();
   };
