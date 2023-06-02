@@ -126,7 +126,7 @@ export const SideBar = () => {
               checked={luxurySets}
               type="checkbox"
               id="luxury set"
-              onChange={(event) =>
+              onChange={(event) =>  
                 setfilterDispatch({
                   type: "FILTER_LUXURY_SET",
                   payload: event.target.checked,

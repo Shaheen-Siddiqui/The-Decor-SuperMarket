@@ -40,7 +40,7 @@ export const WishList = () => {
           <center>
             <Link to="/product-listing">
               <button className="button">
-                <span>Shop Now!! </span>
+                <span>Shop Now!! </span>  
               </button>
             </Link>
           </center>
@@ -57,7 +57,6 @@ export const WishList = () => {
               rating,
               _id,
             } = item;
-            console.log(item, "quantity");
             return (
               <div className="product wishlist-product" key={_id}>
                 <FontAwesomeIcon
