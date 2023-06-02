@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 
@@ -11,13 +11,13 @@ import {
   hometownBrand,
   nilKamal,
   woodenStreetBrand,
-  sliderImages
+  sliderImages,
 } from "../../assets";
 import { filterContext } from "../../hooks/context/filterContext";
 
 export const Home = () => {
   const [_, setImageNum] = useState(1);
- 
+
   const { categoriesData, setfilterDispatch } = useContext(filterContext);
   const navigate = useNavigate();
 
@@ -48,6 +48,11 @@ export const Home = () => {
     }
     navigate("/product-listing");
   };
+
+  useEffect(() => {
+    setfilterDispatch({ type: "RESET_ALL_FILTER" });
+  }, []);
+
   return (
     <>
       <div className="hero-img-case">
@@ -63,15 +68,14 @@ export const Home = () => {
           }}
           autoPlayDelay={2}
         />
-
       </div>
-        <center>
-          <Link to="/product-listing">
-            <button className="button">
-              <span>Shop Now!! </span>
-            </button>
-          </Link>
-        </center>
+      <center>
+        <Link to="/product-listing">
+          <button className="button">
+            <span>Shop Now!! </span>
+          </button>
+        </Link>
+      </center>
 
       {/*  */}
       <h1 className="category-desc">Top Categories of the year</h1>
