@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RotatingLines } from "react-loader-spinner";
 
-// lazy loads for optimised the code performance //
+// lazy loads for optimise the code performance //
 import "./App.css";
 import { RequireAuth } from "./RequireAuth";
 import Mockman from "mockman-js";
@@ -47,19 +47,22 @@ function App() {
         theme="light"
 
       />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<h1 className="rotating-lines-spinner">Loading...</h1>}>
         <Header bars={bars} setBars={setBars} />
       </Suspense>
       <div style={{ marginTop: bars ? "2rem" : "10rem" }}>
         <Suspense
           fallback={
+            <div className="rotating-lines-spinner">
             <RotatingLines
               strokeColor="grey"
               strokeWidth="5"
               animationDuration="0.75"
               width="96"
               visible={true}
+              style={{}}
             />
+            </div>
           }
         >
           <Routes>

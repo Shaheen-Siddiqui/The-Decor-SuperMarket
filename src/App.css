@@ -43,6 +43,10 @@ body {
     border-radius: 1rem;
     width: fit-content;
 }
+.rotating-lines-spinner{
+    display: flex;
+    justify-content:center;
+}
 
 ::-webkit-scrollbar {
     width: 0.5em;
