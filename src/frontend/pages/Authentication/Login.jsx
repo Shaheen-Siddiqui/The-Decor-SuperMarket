@@ -37,8 +37,8 @@ export const LogIn = () => {
   const guestCredentialHandler = (event) => {
     setUserLoginCredential({
       ...userLoginCredential,
-      email: "HumayraAmaan@gmail.com",
-      password: "Amaan_143",
+      email: "Shaheen_amaan@gmail.com",
+      password: "Shaheen@143",
     });
     event.preventDefault();
   };
