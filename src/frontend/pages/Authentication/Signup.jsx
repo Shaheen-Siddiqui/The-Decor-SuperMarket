@@ -39,6 +39,7 @@ export const SignUp = () => {
   };
   const userSignedUpHandler = (event) => {
     event.preventDefault();
+    
     obtainSignedUpUserData(
       email,
       password,

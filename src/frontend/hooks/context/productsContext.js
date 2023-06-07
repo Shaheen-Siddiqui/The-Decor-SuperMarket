@@ -32,9 +32,10 @@ export const ProductContextProvider = ({ children }) => {
     coupanApplyOnTotalAmount,
   } = productState;
 
-  const encodedToken = localStorage.getItem("token");
-
+  
   const obtainAddItemToCartApi = async (product) => {
+    const encodedToken = localStorage.getItem("token");
+
     try {
       const response = await axios.post(
         `/api/user/cart`,
@@ -51,6 +52,12 @@ export const ProductContextProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+      
+      toast.error("unable to add in cart! please Log in again", {
+        className: "toast-styling",
+        autoClose:2500
+      });
+
     }
   };
 

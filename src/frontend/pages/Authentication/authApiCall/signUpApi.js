@@ -13,19 +13,22 @@ export async function obtainSignedUpUserData(
 ) {
   if (isPasswordMatch()) {
     try {
-      const Response = await axios.post(`/api/auth/signup`, {
+      const Response = await axios.post(`/api/auth/signup`, { 
         email,
         password,
         fullName,
+
       });
+
       if (Response.status === 201) {
+
         localStorage.setItem("user", JSON.stringify(Response.data.createdUser));
         localStorage.setItem("token", Response.data.encodedToken);
-        toast.success("Congratulations! Your account has been created", {
+
+        toast.success("Successfully signed up kindly login", {
           className: "toast-styling",
           autoClose: 2000,
         });
-
         setAuthDispatch({
           type: "USER_SIGNUP",
           payload: {
