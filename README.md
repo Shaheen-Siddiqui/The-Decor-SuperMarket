@@ -52,7 +52,7 @@
  
  -----
 # Screen shot
-## 1. home page
+## 1. Home page
  ![D`core-superMarket(home page)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/5a8cb73f-b75b-424d-8719-31a24f4e22af)
  
 ## 2 Product Listing Page
@@ -64,17 +64,17 @@
 ## 4 Wishlist Page
 ![D`core-superMarket-(wishlist)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/623056b3-378b-439a-80b9-a6d760812529)
 
-## 5 Single Product Deatil
-![D`core-superMarket-(product Deatil)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/221f3b94-2864-4548-be7d-9bd3fb969f85)
+## 5 Single Product Detail
+![D`core-superMarket-(product Detail)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/221f3b94-2864-4548-be7d-9bd3fb969f85)
 
-## 6 Address Mnagement 
-![D`core-superMarket-(Address menegment)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/365ee979-6983-48ea-b3ab-189cb6e6772e)
+## 6 Address Management 
+![D`core-superMarket-(Address management)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/365ee979-6983-48ea-b3ab-189cb6e6772e)
 
 ## 7 Checkout page
 ![D`core-superMarket-(checkout)](https://github.com/Shaheen-Siddiqui/-The-Decor-SuperMarket/assets/95218912/16a09872-28c1-42de-9479-33ac9a3926ea)
 
 
-## let's come to Coffie with Me
+## Let's come to Coffie with Me
 
   * [Github](https://github.com/Shaheen-Siddiqui/)
 
